@@ -2,120 +2,137 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>متجرنا يقدم لكم | الرئيسية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A7X STORE | المتجر الرسمي</title>
     <style>
+        /* خلفية متحركة فخمة */
         body {
-            background: #000;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            text-align: center;
             margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .hero-section h1 { font-size: 2.5rem; color: #ffcc00; margin-bottom: 40px; }
-
-        .cat-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        /* تصميم كرت الماب مع الصورة */
-        .cat-card {
-            background: #111;
-            border: 2px solid #333;
-            border-radius: 25px;
-            width: 280px;
-            padding: 20px;
-            cursor: pointer;
-            transition: 0.4s;
-            text-decoration: none;
-            color: white;
-        }
-
-        .cat-card:hover {
-            border-color: #ffcc00;
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
-        }
-
-        .map-img {
-            width: 100%;
-            height: 160px;
-            background: #000;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #000000, #1a1a1a, #0a0a0a, #222);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* عنوان المتجر */
+        .store-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ffcc00;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.6);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+
+        .store-subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 50px;
+        }
+
+        /* حاوية المابات */
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* تصميم كرت الماب */
+        .map-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid #333;
+            border-radius: 20px;
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s ease;
+            position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
-        .map-img img {
+        .map-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: #ffcc00;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
+
+        .map-card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* عشان الصورة تعبي المربع */
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: 0.4s;
         }
 
-        /* رسالة التنبيه المخصصة لبلوكس فروت */
-        .alert-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            justify-content: center; align-items: center;
-            z-index: 1000;
+        .map-card:hover img {
+            transform: scale(1.1);
         }
-        .alert-box {
-            background: #111; border: 2px solid #ffcc00;
-            padding: 40px; border-radius: 20px; text-align: center;
+
+        .map-card h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #fff;
         }
-        .alert-box button {
-            background: #ffcc00; border: none; padding: 10px 30px;
-            border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
+
+        .status-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .online { background: #ffcc00; color: black; }
+        .soon { background: #333; color: #888; }
+
+        /* تذييل الصفحة */
+        .footer {
+            margin-top: 60px;
+            color: #555;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-section">
-        <h1>مرحباً بك في متجرنا الخاص</h1>
-    </div>
+    <h1 class="store-title">A7X STORE</h1>
+    <p class="store-subtitle">وجهتك الأولى لأفضل أغراض المابات</p>
 
-    <div class="cat-container">
-        <a href="brainrot.html" class="cat-card">
-            <div class="map-img">
-                <img src="SAB" alt="Steal A Brainrot" onerror="this.src='https://via.placeholder.com/280x160?text=SAB+Image'">
-            </div>
-            <h2>STEAL A BRAINROT</h2>
-            <p style="color: #888;">تسوّق الأغراض الآن</p>
+    <div class="container">
+        <a href="bloxfruit.html" class="map-card">
+            <img src="https://i.ibb.co/pBTX7mS/bloxfruit-logo.png" alt="Blox Fruit"> 
+            <h3>BLOX FRUIT</h3>
+            <span class="status-tag soon">قريباً جداً</span>
         </a>
 
-        <div class="cat-card" onclick="showAlert()">
-            <div class="map-img">
-                <img src="BF" alt="Blox Fruits" onerror="this.src='https://via.placeholder.com/280x160?text=BF+Image'">
-            </div>
-            <h2>BLOX FRUITS</h2>
-            <p style="color: #ffcc00;">قريباً جداً</p>
-        </div>
+        <a href="brainrot.html" class="map-card">
+            <img src="Project_Community-removebg-preview.png" alt="Steal a Brainrot">
+            <h3>STEAL A BRAINROT</h3>
+            <span class="status-tag online">تسوّق الآن</span>
+        </a>
     </div>
 
-    <div id="overlay" class="alert-overlay">
-        <div class="alert-box">
-            <h2 style="color: #ffcc00;">⚠️ قريباً</h2>
-            <p>سوف نوفر هذا الماب قريباً جداً!</p>
-            <button onclick="hideAlert()">فهمت</button>
-        </div>
+    <div class="footer">
+        © 2026 A7X STORE - جميع الحقوق محفوظة
     </div>
 
-    <script>
-        function showAlert() { document.getElementById('overlay').style.display = 'flex'; }
-        function hideAlert() { document.getElementById('overlay').style.display = 'none'; }
-    </script>
 </body>
 </html>
