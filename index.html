@@ -5,131 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A7X STORE | المتجر الرسمي</title>
     <style>
-        /* خلفية متحركة احترافية */
+        /* كود التصميم الأصلي الخاص بك */
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            margin: 0; padding: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; min-height: 100vh;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
+            color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden;
         }
 
-        /* اسم المتجر مع تأثير التوهج */
         .store-title {
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: #ffcc00;
-            text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
-            margin: 0;
-            letter-spacing: 4px;
+            font-size: 4.5rem; font-weight: 900; color: #ffcc00;
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.5); margin: 0; letter-spacing: 4px;
         }
 
-        .store-subtitle {
-            font-size: 1.1rem;
-            color: #888;
-            margin-bottom: 15px;
-        }
+        .store-subtitle { font-size: 1.1rem; color: #888; margin-bottom: 15px; }
 
-        /* روابط التواصل الاجتماعي */
-        .social-links {
-            margin-bottom: 40px;
-            display: flex;
-            gap: 20px;
-        }
+        .social-links { margin-bottom: 40px; display: flex; gap: 20px; }
+        
         .social-btn {
-            color: #ffcc00;
-            text-decoration: none;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            padding: 5px 15px;
-            border-radius: 20px;
-            transition: 0.3s;
+            background: none; color: #ffcc00; text-decoration: none; font-size: 0.9rem;
+            border: 1px solid rgba(255, 204, 0, 0.3); padding: 5px 15px;
+            border-radius: 20px; transition: 0.3s; cursor: pointer;
         }
-        .social-btn:hover {
-            background: #ffcc00;
-            color: black;
-            box-shadow: 0 0 15px #ffcc00;
-        }
+        .social-btn:hover { background: #ffcc00; color: black; box-shadow: 0 0 15px #ffcc00; }
 
-        .container {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
+        .container { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; padding: 20px; }
 
-        /* تصميم كرت الماب المطور */
         .map-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #222;
-            border-radius: 30px;
-            width: 320px;
-            padding: 25px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.03); border: 1px solid #222;
+            border-radius: 30px; width: 320px; padding: 25px; text-align: center;
+            text-decoration: none; color: white; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
         }
 
-        .map-card:hover {
-            transform: translateY(-20px);
-            border-color: #ffcc00;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            background: rgba(255, 255, 255, 0.05);
-        }
+        .map-card:hover { transform: translateY(-20px); border-color: #ffcc00; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
 
         .img-container {
-            width: 100%;
-            height: 180px;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%; height: 180px; border-radius: 20px; overflow: hidden;
+            margin-bottom: 20px; background: #000; display: flex; align-items: center; justify-content: center;
         }
+        .map-card img { max-width: 100%; max-height: 100%; transition: 0.5s; }
+        .map-card:hover img { transform: scale(1.15) rotate(2deg); }
 
-        .map-card img {
-            max-width: 100%;
-            max-height: 100%;
-            transition: 0.5s;
-        }
-
-        .map-card:hover img {
-            transform: scale(1.15) rotate(2deg);
-        }
-
-        .map-card h3 {
-            font-size: 1.6rem;
-            margin: 15px 0 5px 0;
-        }
-
-        .status {
-            font-size: 0.85rem;
-            font-weight: bold;
-            padding: 6px 16px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 10px;
-        }
+        .status { font-size: 0.85rem; font-weight: bold; padding: 6px 16px; border-radius: 50px; display: inline-block; margin-top: 10px; }
         .online { background: #ffcc00; color: black; box-shadow: 0 0 10px rgba(255, 204, 0, 0.4); }
         .soon { background: #1a1a1a; color: #555; border: 1px solid #333; }
 
-        .footer {
-            position: fixed;
-            bottom: 20px;
-            color: #444;
-            font-size: 0.8rem;
+        /* نظام التنبيهات الجديد المتوافق مع التصميم */
+        #customAlert {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center;
         }
+        .alert-box {
+            background: #0a0a0a; border: 2px solid #ffcc00; padding: 35px; border-radius: 25px;
+            text-align: center; max-width: 350px; box-shadow: 0 0 50px rgba(255, 204, 0, 0.2);
+        }
+        .loader {
+            border: 3px solid #111; border-top: 3px solid #ffcc00; border-radius: 50%;
+            width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -138,31 +73,54 @@
     <p class="store-subtitle">وجهتك الأولى لأفضل أغراض المابات</p>
 
     <div class="social-links">
-        <a href="#" class="social-btn">Discord 👾</a>
-        <a href="#" class="social-btn">TikTok 📱</a>
+        <button class="social-btn" onclick="handleLink('discord')">Discord 👾</button>
+        <button class="social-btn" onclick="handleLink('tiktok')">TikTok 📱</button>
     </div>
 
     <div class="container">
         <a href="bloxfruit.html" class="map-card">
-            <div class="img-container">
-                <img src="BF" alt="Blox Fruit">
-            </div>
+            <div class="img-container"><img src="BF" alt="Blox Fruit"></div>
             <h3>BLOX FRUIT</h3>
             <span class="status soon">قريباً جداً</span>
         </a>
-
         <a href="brainrot.html" class="map-card">
-            <div class="img-container">
-                <img src="SAB" alt="Steal a Brainrot">
-            </div>
+            <div class="img-container"><img src="SAB" alt="Steal a Brainrot"></div>
             <h3>STEAL A BRAINROT</h3>
             <span class="status online">تسوّق الآن</span>
         </a>
     </div>
 
-    <div class="footer">
-        © 2026 A7X STORE - جميع الحقوق محفوظة
+    <div id="customAlert">
+        <div class="alert-box">
+            <h2 id="alertTitle" style="color: #ffcc00; margin: 0;"></h2>
+            <p id="alertBody" style="margin: 15px 0; color: #ccc;"></p>
+            <div id="alertLoader" class="loader"></div>
+            <button id="alertBtn" class="social-btn" style="display:none; margin-top: 10px;" onclick="document.getElementById('customAlert').style.display='none'">حسناً</button>
+        </div>
     </div>
 
+    <script>
+        function handleLink(type) {
+            const modal = document.getElementById('customAlert');
+            const title = document.getElementById('alertTitle');
+            const body = document.getElementById('alertBody');
+            const loader = document.getElementById('alertLoader');
+            const btn = document.getElementById('alertBtn');
+
+            modal.style.display = 'flex';
+            if(type === 'discord') {
+                title.innerText = 'جارٍ التحويل...';
+                body.innerText = 'يتم الآن نقلك إلى سيرفر الديسكورد الخاص بنا.';
+                loader.style.display = 'block';
+                btn.style.display = 'none';
+                setTimeout(() => { window.location.href = 'https://discord.gg/472RS8rT'; }, 2000);
+            } else {
+                title.innerText = 'تنبيه';
+                body.innerText = 'سننشر رابط صفحتنا الخاصة على تيك توك قريباً جداً!';
+                loader.style.display = 'none';
+                btn.style.display = 'inline-block';
+            }
+        }
+    </script>
 </body>
 </html>
