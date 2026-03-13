@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر ألعاب | Roblox Store</title>
+    <title>متجر روبلوكس الاحترافي</title>
     <style>
-        /* --- الألوان والمتغيرات الأساسية --- */
         :root {
-            --bg-color: #0d0d0d;   /* خلفية سوداء فخمة */
-            --card-bg: #1a1a1a;    /* خلفية الكروت */
-            --main-yellow: #ffeb3b; /* اللون الأصفر الأساسي */
-            --dark-yellow: #fbc02d; /* أصفر أغمق للتدرج */
+            --bg-color: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --main-yellow: #ffcc00;
             --text-color: #ffffff;
-            --sub-text: #b0b0b0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -26,169 +23,108 @@
             align-items: center;
         }
 
-        /* --- قسم الترويسة (البانر العلوي) --- */
-        .header {
+        /* تنسيق قسم البانر */
+        .header-container {
             width: 100%;
-            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            max-width: 900px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 30px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
         }
 
-        .header img {
-            max-width: 90%;
+        .header-container img {
+            width: 100%;
             height: auto;
-            border-radius: 10px;
-            /* إزالة الخلفية البيضاء لو كانت الصورة شفافة */
-            background-color: transparent; 
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.2);
+            /* هاض السطر عشان لو الصورة ما حملت يظهر إطار جميل بدل العلامة المكسورة */
+            min-height: 100px;
+            background-color: #111;
         }
 
         h1 {
             color: var(--main-yellow);
-            text-transform: uppercase;
-            margin: 40px 0;
-            text-shadow: 0 0 15px rgba(255, 235, 59, 0.4);
-            font-size: 2rem;
+            margin: 30px 0;
+            text-align: center;
         }
 
-        /* --- حاوية الكروت (الأغراض) --- */
         .container {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
-            max-width: 1200px;
-            padding: 20px;
+            padding-bottom: 50px;
         }
 
-        /* --- تصميم الكرت --- */
         .card {
             background-color: var(--card-bg);
             border-radius: 20px;
             width: 280px;
-            padding: 25px;
+            padding: 30px 20px;
             text-align: center;
             position: relative;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            border: 2px solid transparent;
-            margin-top: 50px; /* مسافة عشان الأيقونة الدائرية */
+            border: 1px solid #333;
+            margin-top: 50px;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--main-yellow);
-            box-shadow: 0 15px 30px rgba(255, 235, 59, 0.2);
-        }
-
-        /* الأيقونة الدائرية فوق الكرت */
-        .icon-container {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--main-yellow), var(--dark-yellow));
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--main-yellow), #f39c12);
             border-radius: 50%;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            top: -55px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
             border: 5px solid var(--card-bg);
-        }
-
-        .icon-container img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        /* نصوص الكرت */
-        h2 {
-            margin-top: 55px;
-            font-size: 1.5rem;
-            color: var(--text-color);
         }
 
         .price {
             font-size: 2.2rem;
-            font-weight: bold;
             color: var(--main-yellow);
-            margin: 15px 0;
-        }
-
-        .description {
-            color: var(--sub-text);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        /* زر الشراء */
-        .buy-btn {
-            background: linear-gradient(90deg, var(--dark-yellow), var(--main-yellow));
-            color: #000;
-            border: none;
-            padding: 14px 25px;
-            border-radius: 15px;
             font-weight: bold;
-            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .buy-btn {
+            background-color: var(--main-yellow);
+            color: black;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: bold;
             cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
         }
-
-        .buy-btn:hover {
-            transform: scale(1.03);
-            background: #ffffff;
-        }
-
-        /* الخط الملون في الأسفل */
-        .card-footer-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            border-radius: 0 0 20px 20px;
-            background: linear-gradient(90deg, var(--main-yellow), #ffffff, var(--dark-yellow));
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="Project Community.png" alt="Roblox Header">
+    <div class="header-container">
+        <img src="banner.png" alt="Roblox Header">
     </div>
 
-    <h1>Welcome to My Game Store</h1>
+    <h1>WELCOME TO MY GAME STORE</h1>
 
     <div class="container">
         <div class="card">
-            <div class="icon-container">
-                <img src="https://img.icons8.com/color/100/roblox.png" alt="Roblox Icon">
-            </div>
-            <h2>تطوير ماب كامل</h2>
-            <p class="price">$5</p>
-            <p class="description">تصميم، برمجة، وبناء ماب روبلوكس احترافي من الصفر.</p>
+            <div class="icon-circle">🔥</div>
+            <h2>Blox Fruits Items</h2>
+            <p class="price">$10</p>
+            <p>فواكه نادرة وأدوات قوية متوفرة فوراً.</p>
             <button class="buy-btn">Buy with Crypto</button>
-            <div class="card-footer-line"></div>
         </div>
 
         <div class="card">
-            <div class="icon-container">
-                <img src="https://img.icons8.com/fluency/100/fire-element.png" alt="Blox Fruits Icon">
-            </div>
-            <h2>Blox Fruits Items</h2>
-            <p class="price">$10</p>
-            <p class="description">فواكه نادرة وأدوات قوية متوفرة للتسليم الفوري.</p>
+            <div class="icon-circle">🏗️</div>
+            <h2>تطوير ماب كامل</h2>
+            <p class="price">$5</p>
+            <p>بناء وبرمجة ماب احترافي من الصفر.</p>
             <button class="buy-btn">Buy with Crypto</button>
-            <div class="card-footer-line"></div>
         </div>
     </div>
 
