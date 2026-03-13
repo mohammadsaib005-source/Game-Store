@@ -5,49 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A7X STORE | المتجر الرسمي</title>
     <style>
-        /* التنسيق الأساسي للمتجر */
-        body { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: radial-gradient(circle at center, #111 0%, #000 100%); color: white; font-family: 'Segoe UI', sans-serif; }
-        .store-title { font-size: 4.5rem; color: #ffcc00; text-shadow: 0 0 30px rgba(255, 204, 0, 0.5); margin: 0; }
-        .social-links { margin-bottom: 40px; display: flex; gap: 20px; }
-        .social-btn { color: #ffcc00; text-decoration: none; border: 1px solid rgba(255, 204, 0, 0.3); padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; background: none; font-size: 1rem; }
-        .social-btn:hover { background: #ffcc00; color: black; box-shadow: 0 0 15px #ffcc00; }
-
-        /* نافذة الرسائل (Modal) */
-        #customAlert {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center;
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
         }
-        .alert-box {
-            background: #0a0a0a; border: 2px solid #ffcc00; padding: 40px; border-radius: 20px;
-            text-align: center; box-shadow: 0 0 50px rgba(255, 204, 0, 0.2); max-width: 400px;
+
+        .store-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #ffcc00;
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
+            margin: 0;
+            letter-spacing: 4px;
         }
-        .alert-box h2 { color: #ffcc00; margin-top: 0; }
-        .loader { border: 4px solid #111; border-top: 4px solid #ffcc00; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* حاوية المابات */
-        .container { display: flex; gap: 40px; }
-        .map-card { background: rgba(255, 255, 255, 0.03); border: 1px solid #222; border-radius: 30px; width: 300px; padding: 25px; text-align: center; text-decoration: none; color: white; transition: 0.4s; }
-        .map-card:hover { transform: translateY(-15px); border-color: #ffcc00; }
-        .img-container { width: 100%; height: 180px; background: #000; border-radius: 20px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
-        .map-card img { max-width: 100%; max-height: 100%; }
-        .status { font-size: 0.8rem; font-weight: bold; padding: 6px 16px; border-radius: 50px; display: inline-block; margin-top: 10px; }
-        .online { background: #ffcc00; color: black; }
-        .soon { background: #1a1a1a; color: #555; }
-    </style>
-</head>
-<body>
+        .store-subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 25px;
+        }
 
-    <h1 class="store-title">A7X STORE</h1>
-    <p style="color: #888;">وجهتك الأولى لأفضل أغراض المابات</p>
+        /* روابط السوشيال ميديا */
+        .social-links {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+        }
 
-    <div class="social-links">
-        <button class="social-btn" onclick="showMsg('discord')">Discord 👾</button>
-        <button class="social-btn" onclick="showMsg('tiktok')">TikTok 📱</button>
-    </div>
+        .social-btn {
+            background: none;
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    <div class="container">
-        <a href="bloxfruit.html" class="map-card">
-            <div class="img-container"><img src="BF"></div>
-            <h3>BLOX FRUIT</h3>
-            <span class="status soon">قريباً جداً [cite: 6A7568D1-E100-4A1F-8257-200
+        .social-btn:hover {
+            background: #ffcc00;
+            color: black;
+            box-shadow: 0 0 20px #ffcc00;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .map-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            border-radius: 30px;
+            width: 300px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        .map-card:hover {
+            transform: translateY(-15px);
+            border-color: #ffcc00;
+        }
+
+        .img-container {
+            width: 100%;
+            height:
