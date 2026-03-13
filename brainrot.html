@@ -2,197 +2,95 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Brainrot Store | المتجر الأسطوري</title>
+    <title>A7X STORE | Steal a Brainrot</title>
     <style>
-        body { 
-            background: #050505; color: white; font-family: 'Segoe UI', sans-serif; 
-            margin: 0; overflow-x: hidden;
+        body { background: #000; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
+        .header { padding: 20px; border-bottom: 2px solid #ffcc00; display: flex; justify-content: space-between; align-items: center; background: #050505; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 40px 8%; }
+        
+        /* الكرت */
+        .card { 
+            background: #0a0a0a; border-radius: 20px; padding: 25px; border: 1px solid #222; 
+            transition: 0.3s; position: relative;
         }
+        .card:hover { transform: translateY(-10px); border-color: #ffcc00; box-shadow: 0 10px 30px rgba(255, 204, 0, 0.1); }
 
-        /* خلفية الجزيئات المتحركة */
-        .bg-animate {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            z-index: -1;
-        }
+        /* نظام التوفر */
+        .badge { position: absolute; top: 15px; right: 15px; padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; }
+        .available { background: #2ecc71; color: white; } /* متوفر */
+        .sold-out { background: #e74c3c; color: white; } /* غير متوفر */
+        .sold-out-overlay { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
 
-        /* شريط الأخبار المتحرك */
-        .news-ticker {
-            background: #ffcc00; color: black; padding: 5px 0;
-            font-weight: bold; font-size: 0.9rem; overflow: hidden;
-        }
-        .ticker-text {
-            display: inline-block; white-space: nowrap;
-            animation: ticker 20s linear infinite;
-        }
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
+        .img-box { height: 180px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
+        .img-box img { max-width: 90%; max-height: 90%; }
 
-        .header {
-            padding: 20px 5%; display: flex; justify-content: space-between;
-            align-items: center; background: rgba(0,0,0,0.8);
-            border-bottom: 2px solid #ffcc00; backdrop-filter: blur(10px);
-            position: sticky; top: 0; z-index: 1000;
-        }
+        .stars { color: #ffcc00; font-size: 0.9rem; margin: 10px 0; }
+        .price { color: #ffcc00; font-size: 2rem; font-weight: bold; }
+        
+        .buy-btn { background: #ffcc00; color: black; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; transition: 0.3s; }
+        .buy-btn:hover { background: white; }
+        .btn-disabled { background: #333 !important; color: #777 !important; cursor: not-allowed; }
 
-        .cart-icon-btn {
-            background: #ffcc00; color: #000; padding: 10px 20px;
-            border-radius: 12px; font-weight: bold; cursor: pointer; border: none;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); transition: 0.3s;
-        }
-
-        /* شبكة المنتجات */
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px; padding: 40px 10%;
-        }
-
-        .card {
-            background: rgba(20, 20, 20, 0.8); border: 1px solid #222;
-            border-radius: 25px; padding: 25px; text-align: center;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(5px);
-        }
-        .card:hover {
-            transform: scale(1.05); border-color: #ffcc00;
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
-        }
-
-        .img-box {
-            height: 180px; background: #000; border-radius: 20px;
-            margin-bottom: 15px; display: flex; align-items: center; justify-content: center;
-        }
-        .img-box img { max-width: 85%; max-height: 85%; transition: 0.4s; }
-        .card:hover .img-box img { transform: rotate(5deg) scale(1.1); }
-
-        .stars { color: #ffcc00; margin-bottom: 10px; font-size: 0.8rem; }
-        .price { color: #ffcc00; font-size: 2rem; font-weight: bold; margin: 10px 0; }
-
-        /* قسم الميزات */
-        .features {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; padding: 60px 10%; background: #080808;
-        }
-        .f-item { text-align: center; padding: 20px; }
-        .f-item i { font-size: 2rem; color: #ffcc00; display: block; margin-bottom: 10px; }
-
-        .buy-btn {
-            background: #ffcc00; color: black; border: none; padding: 15px;
-            width: 100%; border-radius: 12px; font-weight: bold; cursor: pointer;
-        }
-
-        /* السلة الجانبية */
-        #fullCartView {
-            display: none; position: fixed; top: 0; right: 0; width: 320px; height: 100%;
-            background: #111; border-left: 2px solid #ffcc00; z-index: 3000; padding: 20px;
-        }
+        /* التذييل */
+        .footer-nav { margin: 40px 0; display: flex; justify-content: center; gap: 20px; }
+        .nav-link { color: #ffcc00; text-decoration: none; border: 1px solid #333; padding: 10px 20px; border-radius: 15px; transition: 0.3s; }
+        .nav-link:hover { border-color: #ffcc00; background: rgba(255, 204, 0, 0.05); }
     </style>
 </head>
 <body>
 
-    <div class="bg-animate"></div>
-
-    <div class="news-ticker">
-        <div class="ticker-text">
-            🔥 عرض لفترة محدودة: خصم 10% عند الشراء بأكثر من $1000! &nbsp;&nbsp;&nbsp;&nbsp; 
-            ✅ تم تسليم طلب لـ "Abood_GG" بنجاح &nbsp;&nbsp;&nbsp;&nbsp; 
-            🚀 أسرع تسليم في الشرق الأوسط
+    <div class="header">
+        <a href="index.html" style="color:#ffcc00; text-decoration:none;">← العودة للرئيسية</a>
+        <h2 style="color:#ffcc00;">A7X - STEAL A BRAINROT</h2>
+        <div>
+            <a href="https://discord.gg/472RS8rT" target="_blank" class="nav-link" style="margin-left: 10px;">ديسكورد 👾</a>
+            <a href="javascript:void(0)" onclick="alert('قريباً سننشر رابط الصفحة الخاصة بنا على تيك توك!')" class="nav-link">تيك توك 📱</a>
         </div>
     </div>
 
-    <div class="header">
-        <a href="index.html" style="color:#ffcc00; text-decoration:none; font-weight:bold;">← الرئيسية</a>
-        <h2 style="color: #ffcc00; margin: 0;">BRAINROT STORE</h2>
-        <button class="cart-icon-btn" onclick="toggleCartView()">🛒 السلة (<span id="cart-count">0</span>)</button>
-    </div>
-
     <div class="grid">
+        
         <div class="card">
+            <span class="badge available">متوفر ✅</span>
             <div class="img-box"><img src="SE"></div>
-            <div class="stars">⭐⭐⭐⭐⭐ (12 تقييم)</div>
+            <div class="stars">⭐⭐⭐⭐⭐ (0 تقييم)</div>
             <h3>Strawberry Elephant</h3>
             <div class="price">$500</div>
             <button class="buy-btn" onclick="addToCart('Elephant', 500)">أضف للسلة</button>
         </div>
 
         <div class="card">
+            <span class="badge available">متوفر ✅</span>
             <div class="img-box"><img src="ME"></div>
-            <div class="stars">⭐⭐⭐⭐⭐ (8 تقييمات)</div>
+            <div class="stars">⭐⭐⭐⭐⭐ (0 تقييم)</div>
             <h3>Meowl</h3>
             <div class="price">$400</div>
             <button class="buy-btn" onclick="addToCart('Meowl', 400)">أضف للسلة</button>
         </div>
 
         <div class="card">
+            <span class="badge sold-out">غير متوفر ❌</span>
             <div class="img-box"><img src="SK"></div>
-            <div class="stars">⭐⭐⭐⭐ (15 تقييم)</div>
+            <div class="stars">⭐⭐⭐⭐⭐ (0 تقييم)</div>
             <h3>Skibidi Toilet</h3>
             <div class="price">$300</div>
-            <button class="buy-btn" onclick="addToCart('Skibidi', 300)">أضف للسلة</button>
+            <button class="buy-btn btn-disabled">نفذت الكمية</button>
         </div>
 
         <div class="card">
+            <span class="badge available">متوفر ✅</span>
             <div class="img-box"><img src="DR"></div>
-            <div class="stars">⭐⭐⭐⭐⭐ (20 تقييم)</div>
+            <div class="stars">⭐⭐⭐⭐⭐ (0 تقييم)</div>
             <h3>Dragon Cannelloni</h3>
             <div class="price">$60</div>
             <button class="buy-btn" onclick="addToCart('Dragon', 60)">أضف للسلة</button>
         </div>
-    </div>
 
-    <div class="features">
-        <div class="f-item">
-            <span style="font-size: 2.5rem;">⚡</span>
-            <h3>تسليم فوري</h3>
-            <p style="color:#888;">يتم تسليم الأغراض خلال 5-10 دقائق.</p>
-        </div>
-        <div class="f-item">
-            <span style="font-size: 2.5rem;">🛡️</span>
-            <h3>ضمان 100%</h3>
-            <p style="color:#888;">أغراضنا آمنة تماماً ولا تسبب أي باند.</p>
-        </div>
-        <div class="f-item">
-            <span style="font-size: 2.5rem;">🎧</span>
-            <h3>دعم فني</h3>
-            <p style="color:#888;">متواجدون دائماً لمساعدتك عبر ديسكورد.</p>
-        </div>
-    </div>
-
-    <div id="fullCartView">
-        <button onclick="toggleCartView()" style="background:none; border:none; color:#ffcc00; cursor:pointer; font-size:1.5rem;">✕</button>
-        <h2 style="text-align:center;">سلتك</h2>
-        <div id="cartItemsList"></div>
-        <div style="position: absolute; bottom: 30px; width: 85%;">
-            <h3 id="totalPriceDisplay">المجموع: $0</h3>
-            <button class="buy-btn" onclick="alert('تواصل معنا لإتمام الدفع!')">إتمام الطلب</button>
-        </div>
     </div>
 
     <script>
-        let cart = [];
         function addToCart(name, price) {
-            cart.push({name, price});
-            updateUI();
-            alert("تم إضافة " + name + " إلى السلة!");
-        }
-        function toggleCartView() {
-            const v = document.getElementById('fullCartView');
-            v.style.display = (v.style.display === 'block') ? 'none' : 'block';
-        }
-        function updateUI() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const list = document.getElementById('cartItemsList');
-            let total = 0;
-            list.innerHTML = '';
-            cart.forEach(item => {
-                total += item.price;
-                list.innerHTML += `<div style="display:flex; justify-content:space-between; margin:10px 0; background:#222; padding:10px; border-radius:10px;">
-                    <span>${item.name}</span><span style="color:#ffcc00;">$${item.price}</span>
-                </div>`;
-            });
-            document.getElementById('totalPriceDisplay').innerText = "المجموع: $" + total;
+            alert("تم إضافة " + name + " لسلتك بنجاح!");
         }
     </script>
 </body>
