@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A7X STORE | المتجر الرسمي</title>
     <style>
+        /* خلفية متحركة احترافية */
         body {
             margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -15,9 +17,10 @@
             background: radial-gradient(circle at center, #111 0%, #000 100%);
             color: white;
             font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
+        /* اسم المتجر مع تأثير التوهج */
         .store-title {
             font-size: 4.5rem;
             font-weight: 900;
@@ -30,32 +33,28 @@
         .store-subtitle {
             font-size: 1.1rem;
             color: #888;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
-        /* روابط السوشيال ميديا */
+        /* روابط التواصل الاجتماعي */
         .social-links {
             margin-bottom: 40px;
             display: flex;
             gap: 20px;
         }
-
         .social-btn {
-            background: none;
             color: #ffcc00;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             border: 1px solid rgba(255, 204, 0, 0.3);
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 20px;
             transition: 0.3s;
         }
-
         .social-btn:hover {
             background: #ffcc00;
             color: black;
-            box-shadow: 0 0 20px #ffcc00;
+            box-shadow: 0 0 15px #ffcc00;
         }
 
         .container {
@@ -63,26 +62,107 @@
             gap: 40px;
             flex-wrap: wrap;
             justify-content: center;
+            padding: 20px;
         }
 
+        /* تصميم كرت الماب المطور */
         .map-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid #222;
             border-radius: 30px;
-            width: 300px;
+            width: 320px;
             padding: 25px;
             text-align: center;
             text-decoration: none;
             color: white;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
         }
 
         .map-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-20px);
             border-color: #ffcc00;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .img-container {
             width: 100%;
-            height:
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-card img {
+            max-width: 100%;
+            max-height: 100%;
+            transition: 0.5s;
+        }
+
+        .map-card:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .map-card h3 {
+            font-size: 1.6rem;
+            margin: 15px 0 5px 0;
+        }
+
+        .status {
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .online { background: #ffcc00; color: black; box-shadow: 0 0 10px rgba(255, 204, 0, 0.4); }
+        .soon { background: #1a1a1a; color: #555; border: 1px solid #333; }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            color: #444;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="store-title">A7X STORE</h1>
+    <p class="store-subtitle">وجهتك الأولى لأفضل أغراض المابات</p>
+
+    <div class="social-links">
+        <a href="#" class="social-btn">Discord 👾</a>
+        <a href="#" class="social-btn">TikTok 📱</a>
+    </div>
+
+    <div class="container">
+        <a href="bloxfruit.html" class="map-card">
+            <div class="img-container">
+                <img src="BF" alt="Blox Fruit">
+            </div>
+            <h3>BLOX FRUIT</h3>
+            <span class="status soon">قريباً جداً</span>
+        </a>
+
+        <a href="brainrot.html" class="map-card">
+            <div class="img-container">
+                <img src="SAB" alt="Steal a Brainrot">
+            </div>
+            <h3>STEAL A BRAINROT</h3>
+            <span class="status online">تسوّق الآن</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        © 2026 A7X STORE - جميع الحقوق محفوظة
+    </div>
+
+</body>
+</html>
