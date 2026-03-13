@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر روبلوكس الاحترافي</title>
+    <title>Roblox Store | الأقسام</title>
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #1a1a1a;
+            --bg-color: #0b0b0b;
+            --card-bg: #161616;
             --main-yellow: #ffcc00;
             --text-color: #ffffff;
         }
@@ -17,116 +17,201 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* تنسيق قسم البانر */
-        .header-container {
+        .header-banner {
             width: 100%;
-            max-width: 900px;
-            margin-top: 20px;
             display: flex;
             justify-content: center;
+            padding: 30px 0;
+            background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
         }
 
-        .header-container img {
-            width: 100%;
+        .header-banner img {
+            max-width: 85%;
             height: auto;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 204, 0, 0.2);
-            /* هاض السطر عشان لو الصورة ما حملت يظهر إطار جميل بدل العلامة المكسورة */
-            min-height: 100px;
-            background-color: #111;
+            filter: drop-shadow(0px 0px 10px rgba(255, 204, 0, 0.3));
         }
 
         h1 {
             color: var(--main-yellow);
-            margin: 30px 0;
-            text-align: center;
+            margin: 40px 0;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
         }
 
-        .container {
+        /* حاوية الأزرار الكبيرة */
+        .category-container {
             display: flex;
-            justify-content: center;
-            gap: 25px;
+            gap: 40px;
             flex-wrap: wrap;
-            padding-bottom: 50px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            width: 280px;
-            padding: 30px 20px;
-            text-align: center;
-            position: relative;
-            border: 1px solid #333;
-            margin-top: 50px;
-        }
-
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--main-yellow), #f39c12);
-            border-radius: 50%;
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
             justify-content: center;
-            align-items: center;
-            border: 5px solid var(--card-bg);
+            padding: 20px;
         }
 
-        .price {
-            font-size: 2.2rem;
-            color: var(--main-yellow);
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .buy-btn {
-            background-color: var(--main-yellow);
-            color: black;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 10px;
-            font-weight: bold;
+        /* تصميم الأزرار الكبيرة مع الأنيميشن */
+        .category-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--main-yellow);
+            border-radius: 20px;
+            width: 320px; /* حجم أكبر */
+            padding: 50px 20px;
             cursor: pointer;
-            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden; /* لإخفاء لمعة الأنيميشن */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .category-btn h2 {
+            margin: 15px 0 0;
+            color: #fff;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* تأثير التكبير عند التقريب */
+        .category-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
+            background-color: #1a1a1a;
+        }
+
+        /* تأثير اللمعان (Shine Animation) */
+        .category-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: none;
+        }
+
+        .category-btn:hover::after {
+            left: 120%;
+            transition: all 0.7s ease-in-out;
+        }
+
+        .icon-large {
+            font-size: 4rem;
+        }
+
+        /* قسم المنتجات المخفي */
+        #products-section {
+            display: none;
+            margin-top: 50px;
+            width: 90%;
+            max-width: 1000px;
+            border-top: 2px solid #333;
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+        }
+
+        .back-btn {
+            background: none;
+            border: 1px solid var(--main-yellow);
+            color: var(--main-yellow);
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
+    <div class="header-banner">
         <img src="banner.png" alt="Roblox Header">
     </div>
 
-    <h1>WELCOME TO MY GAME STORE</h1>
+    <div id="main-menu">
+        <h1>إختر الماب لتصفح المنتجات</h1>
 
-    <div class="container">
-        <div class="card">
-            <div class="icon-circle">🔥</div>
-            <h2>Blox Fruits Items</h2>
-            <p class="price">$10</p>
-            <p>فواكه نادرة وأدوات قوية متوفرة فوراً.</p>
-            <button class="buy-btn">Buy with Crypto</button>
-        </div>
+        <div class="category-container">
+            <div class="category-btn" onclick="showProducts('BLOX FRUIT')">
+                <div class="icon-large">🍎</div>
+                <h2>BLOX FRUIT</h2>
+            </div>
 
-        <div class="card">
-            <div class="icon-circle">🏗️</div>
-            <h2>تطوير ماب كامل</h2>
-            <p class="price">$5</p>
-            <p>بناء وبرمجة ماب احترافي من الصفر.</p>
-            <button class="buy-btn">Buy with Crypto</button>
+            <div class="category-btn" onclick="showProducts('STEAL A BRAINROT')">
+                <div class="icon-large">🧠</div>
+                <h2>STEAL A BRAINROT</h2>
+            </div>
         </div>
     </div>
+
+    <div id="products-section">
+        <button class="back-btn" onclick="goBack()">← العودة للأقسام</button>
+        <h2 id="category-title" style="color: var(--main-yellow);"></h2>
+        
+        <div class="product-grid" id="product-list">
+            </div>
+    </div>
+
+    <script>
+        const productsData = {
+            'BLOX FRUIT': [
+                { name: 'Leopard Fruit', price: '$15' },
+                { name: 'Dragon Fruit', price: '$20' },
+                { name: 'Gamepass 2x Mastery', price: '$10' }
+            ],
+            'STEAL A BRAINROT': [
+                { name: 'Infinite Energy', price: '$5' },
+                { name: 'Custom Skin', price: '$8' },
+                { name: 'VIP Map Access', price: '$12' }
+            ]
+        };
+
+        function showProducts(category) {
+            document.getElementById('main-menu').style.display = 'none';
+            const section = document.getElementById('products-section');
+            const title = document.getElementById('category-title');
+            const list = document.getElementById('product-list');
+
+            section.style.display = 'block';
+            title.innerText = "منتجات " + category;
+            list.innerHTML = ''; // تنظيف القائمة السابقة
+
+            productsData[category].forEach(item => {
+                list.innerHTML += `
+                    <div class="product-card">
+                        <h3>${item.name}</h3>
+                        <p style="color: #ffcc00; font-weight: bold;">${item.price}</p>
+                        <button style="width:100%; background:#ffcc00; border:none; padding:8px; border-radius:5px; font-weight:bold; cursor:pointer;">شراء الآن</button>
+                    </div>
+                `;
+            });
+        }
+
+        function goBack() {
+            document.getElementById('main-menu').style.display = 'block';
+            document.getElementById('products-section').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
