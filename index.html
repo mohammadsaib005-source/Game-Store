@@ -2,99 +2,112 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>متجر الألعاب | الرئيسية</title>
+    <title>متجر الأساطير | الرئيسية</title>
     <style>
         body {
             background: #000;
             color: white;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             text-align: center;
             margin: 0;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            min-height: 100vh;
         }
 
-        .hero-section {
-            padding: 40px;
-        }
+        .hero-section h1 { font-size: 2.5rem; color: #ffcc00; margin-bottom: 40px; }
 
-        /* تصميم الكرت في الرئيسية */
         .cat-container {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
+        /* تصميم كرت الماب مع الصورة */
         .cat-card {
             background: #111;
-            border: 2px solid #ffcc00;
-            padding: 40px;
-            border-radius: 20px;
-            width: 250px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            width: 280px;
+            padding: 20px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
             text-decoration: none;
             color: white;
         }
 
         .cat-card:hover {
-            box-shadow: 0 0 30px #ffcc00;
-            transform: scale(1.05);
+            border-color: #ffcc00;
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
         }
 
-        /* رسالة التحذير المخصصة */
+        .map-img {
+            width: 100%;
+            height: 160px;
+            background: #000;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .map-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* عشان الصورة تعبي المربع */
+        }
+
+        /* رسالة التنبيه المخصصة لبلوكس فروت */
         .alert-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
+            background: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
             z-index: 1000;
         }
-
         .alert-box {
-            background: #111;
-            border: 2px solid #ffcc00;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
+            background: #111; border: 2px solid #ffcc00;
+            padding: 40px; border-radius: 20px; text-align: center;
         }
-
         .alert-box button {
-            background: #ffcc00;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
+            background: #ffcc00; border: none; padding: 10px 30px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <div class="hero-section">
-        <h1 style="font-size: 3rem; color: #ffcc00;">مرحباً بك في متجرنا الخاص</h1>
+        <h1>مرحباً بك في متجرنا الخاص</h1>
     </div>
 
     <div class="cat-container">
         <a href="brainrot.html" class="cat-card">
+            <div class="map-img">
+                <img src="SAB" alt="Steal A Brainrot" onerror="this.src='https://via.placeholder.com/280x160?text=SAB+Image'">
+            </div>
             <h2>STEAL A BRAINROT</h2>
-            <p>تسوّق الآن</p>
+            <p style="color: #888;">تسوّق الأغراض الآن</p>
         </a>
+
         <div class="cat-card" onclick="showAlert()">
-            <h2>BLOX FRUIT</h2>
-            <p>قريباً جداً</p>
+            <div class="map-img">
+                <img src="BF" alt="Blox Fruits" onerror="this.src='https://via.placeholder.com/280x160?text=BF+Image'">
+            </div>
+            <h2>BLOX FRUITS</h2>
+            <p style="color: #ffcc00;">قريباً جداً</p>
         </div>
     </div>
 
     <div id="overlay" class="alert-overlay">
         <div class="alert-box">
-            <h2 style="color: #ffcc00;">⚠️ تنبيه</h2>
+            <h2 style="color: #ffcc00;">⚠️ قريباً</h2>
             <p>سوف نوفر هذا الماب قريباً جداً!</p>
             <button onclick="hideAlert()">فهمت</button>
         </div>
