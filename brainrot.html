@@ -2,63 +2,120 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Steal A Brainrot | المتجر</title>
+    <title>متجر الأساطير | الرئيسية</title>
     <style>
-        body { background: #050505; color: white; font-family: sans-serif; margin: 0; }
-        .nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ffcc00; background: #000; }
-        .back-link { color: #ffcc00; text-decoration: none; border: 1px solid #ffcc00; padding: 8px 15px; border-radius: 8px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; padding: 60px 10%; }
-        .card { background: #111; border-radius: 20px; padding: 30px; border: 1px solid #222; text-align: center; }
-        .img-box { height: 180px; background: rgba(255,255,255,0.02); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-        .img-box img { max-width: 100%; max-height: 100%; }
-        .price { color: #ffcc00; font-size: 2rem; font-weight: bold; margin: 15px 0; }
-        .buy-btn { background: #ffcc00; color: black; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
 
-        /* نافذة السلة الاحترافية */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 2000;
+        .hero-section h1 { font-size: 2.5rem; color: #ffcc00; margin-bottom: 40px; }
+
+        .cat-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
         }
-        .modal-box {
-            background: #1a1a1a; border: 2px solid #ffcc00; padding: 30px; border-radius: 20px; text-align: center; width: 350px;
+
+        /* تصميم كرت الماب مع الصورة */
+        .cat-card {
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 25px;
+            width: 280px;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.4s;
+            text-decoration: none;
+            color: white;
         }
-        .modal-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 25px; }
-        .btn-go { background: #ffcc00; color: black; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; text-decoration: none; }
-        .btn-continue { background: transparent; color: white; border: 1px solid #555; padding: 10px; border-radius: 10px; cursor: pointer; }
+
+        .cat-card:hover {
+            border-color: #ffcc00;
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
+        }
+
+        .map-img {
+            width: 100%;
+            height: 160px;
+            background: #000;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .map-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* عشان الصورة تعبي المربع */
+        }
+
+        /* رسالة التنبيه المخصصة لبلوكس فروت */
+        .alert-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+        .alert-box {
+            background: #111; border: 2px solid #ffcc00;
+            padding: 40px; border-radius: 20px; text-align: center;
+        }
+        .alert-box button {
+            background: #ffcc00; border: none; padding: 10px 30px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="nav">
-        <a href="index.html" class="back-link">← العودة</a>
-        <h2 style="color:#ffcc00; margin:0;">BRAINROT ITEMS</h2>
-        <div></div>
+    <div class="hero-section">
+        <h1>مرحباً بك في متجرنا الخاص</h1>
     </div>
 
-    <div class="grid">
-        <div class="card"><div class="img-box"><img src="SE"></div><h3>Elephant</h3><div class="price">$500</div><button class="buy-btn" onclick="addToCart()">أضف للسلة</button></div>
-        <div class="card"><div class="img-box"><img src="ME"></div><h3>Meowl</h3><div class="price">$400</div><button class="buy-btn" onclick="addToCart()">أضف للسلة</button></div>
-    </div>
-
-    <div id="cartModal" class="modal-overlay">
-        <div class="modal-box">
-            <h2 style="color: #ffcc00;">✅ تمت الإضافة!</h2>
-            <p>تم إضافة هذا الغرض إلى السلة بنجاح.</p>
-            <div class="modal-btns">
-                <a href="cart.html" class="btn-go">الذهاب إلى السلة</a>
-                <button class="btn-continue" onclick="closeModal()">تكملة التسوق</button>
+    <div class="cat-container">
+        <a href="brainrot.html" class="cat-card">
+            <div class="map-img">
+                <img src="SAB" alt="Steal A Brainrot" onerror="this.src='https://via.placeholder.com/280x160?text=SAB+Image'">
             </div>
+            <h2>STEAL A BRAINROT</h2>
+            <p style="color: #888;">تسوّق الأغراض الآن</p>
+        </a>
+
+        <div class="cat-card" onclick="showAlert()">
+            <div class="map-img">
+                <img src="BF" alt="Blox Fruits" onerror="this.src='https://via.placeholder.com/280x160?text=BF+Image'">
+            </div>
+            <h2>BLOX FRUITS</h2>
+            <p style="color: #ffcc00;">قريباً جداً</p>
+        </div>
+    </div>
+
+    <div id="overlay" class="alert-overlay">
+        <div class="alert-box">
+            <h2 style="color: #ffcc00;">⚠️ قريباً</h2>
+            <p>سوف نوفر هذا الماب قريباً جداً!</p>
+            <button onclick="hideAlert()">فهمت</button>
         </div>
     </div>
 
     <script>
-        function addToCart() {
-            document.getElementById('cartModal').style.display = 'flex';
-        }
-        function closeModal() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
+        function showAlert() { document.getElementById('overlay').style.display = 'flex'; }
+        function hideAlert() { document.getElementById('overlay').style.display = 'none'; }
     </script>
 </body>
 </html>
