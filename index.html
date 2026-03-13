@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر البرينروت الاحترافي</title>
+    <title>متجر الألعاب الاحترافي</title>
     <style>
         :root {
             --bg-color: #0b0b0b;
@@ -23,13 +23,12 @@
             align-items: center;
         }
 
-        /* --- الهيدر الفخم --- */
+        /* --- الهيدر --- */
         .header {
             width: 100%;
             padding: 60px 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('Project Community.png');
-            background-size: contain;
-            background-repeat: no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('Project Community.png');
+            background-size: cover;
             background-position: center;
             border-bottom: 3px solid var(--main-yellow);
             text-align: center;
@@ -42,33 +41,55 @@
             margin: 0;
         }
 
-        /* --- الحاوية والشبكة --- */
-        .container {
-            max-width: 1200px;
+        /* --- حاوية الأقسام الرئيسية --- */
+        .category-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
             padding: 50px 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--main-yellow);
+            padding: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 280px;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .category-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--main-yellow);
+        }
+
+        /* --- قسم المنتجات (مخفي افتراضياً) --- */
+        #products-section {
+            display: none; 
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px 0;
+        }
+
+        .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            width: 90%;
         }
 
-        /* --- تصميم الكروت --- */
         .card {
             background-color: var(--card-bg);
             border-radius: 20px;
             padding: 25px;
             text-align: center;
             border: 1px solid #333;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--main-yellow);
-            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
-        }
+        .card:hover { border-color: var(--main-yellow); }
 
         .img-container {
             width: 100%;
@@ -76,31 +97,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
             background: rgba(255,255,255,0.02);
             border-radius: 15px;
+            margin-bottom: 15px;
         }
 
         .img-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
-        .card h2 {
-            margin: 10px 0;
-            font-size: 1.4rem;
-        }
+        .price { font-size: 1.8rem; color: var(--main-yellow); font-weight: bold; }
 
-        .price {
-            font-size: 2rem;
-            color: var(--main-yellow);
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        /* --- أزرار الشراء --- */
         .add-btn {
             background-color: var(--main-yellow);
             color: #000;
@@ -110,16 +119,19 @@
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-            font-size: 1.1rem;
         }
 
-        .add-btn:hover {
-            background-color: #fff;
-            transform: scale(1.05);
+        .back-btn {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
         }
 
-        /* --- سلة المشتريات العائمة --- */
+        /* --- السلة --- */
         #cart-button {
             position: fixed;
             bottom: 30px;
@@ -129,25 +141,8 @@
             padding: 15px 25px;
             border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-
-        #cart-button:hover { transform: scale(1.1); }
-
-        .back-btn {
-            margin-top: 20px;
-            background: none;
-            border: 1px solid #555;
-            color: #ccc;
-            padding: 8px 20px;
-            border-radius: 8px;
-            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -155,88 +150,51 @@
 
     <div class="header">
         <h1>مرحباً بكم في المتجر</h1>
-        <button class="back-btn">← العودة للرئيسية</button>
     </div>
 
-    <div class="container">
-        <div class="card">
-            <div class="img-container">
-                <img src="image_2026-03-14_000115590-removebg-preview.png" alt="Strawberry Elephant">
-            </div>
-            <h2>Strawberry Elephant</h2>
-            <p class="price">$500</p>
-            <button class="add-btn" onclick="addToCart('Strawberry Elephant', 500)">أضف للسلة</button>
+    <div id="main-menu" class="category-container">
+        <div class="category-btn" onclick="showCategory('STEAL A BRAINROT')">
+            <h2>STEAL A BRAINROT</h2>
         </div>
-
-        <div class="card">
-            <div class="img-container">
-                <img src="image_2026-03-14_000156252-removebg-preview.png" alt="Meowl">
-            </div>
-            <h2>Meowl</h2>
-            <p class="price">$400</p>
-            <button class="add-btn" onclick="addToCart('Meowl', 400)">أضف للسلة</button>
-        </div>
-
-        <div class="card">
-            <div class="img-container">
-                <img src="image_2026-03-14_000221800-removebg-preview.png" alt="Skibidi Toilet">
-            </div>
-            <h2>Skibidi Toilet</h2>
-            <p class="price">$300</p>
-            <button class="add-btn" onclick="addToCart('Skibidi Toilet', 300)">أضف للسلة</button>
-        </div>
-
-        <div class="card">
-            <div class="img-container">
-                <img src="image_2026-03-14_000246005-removebg-preview.png" alt="Dragon Cannelloni">
-            </div>
-            <h2>Dragon Cannelloni</h2>
-            <p class="price">$60</p>
-            <button class="add-btn" onclick="addToCart('Dragon Cannelloni', 60)">أضف للسلة</button>
+        <div class="category-btn" onclick="showCategory('BLOX FRUIT')">
+            <h2>BLOX FRUIT (قريباً)</h2>
         </div>
     </div>
 
-    <div id="cart-button" onclick="showCart()">
-        🛒 السلة: <span id="cart-count">0</span> غرض
+    <div id="products-section">
+        <button class="back-btn" onclick="goBack()">← العودة للأقسام</button>
+        <h2 id="current-category" style="color: var(--main-yellow); text-align: center; margin-bottom: 30px;"></h2>
+        <div class="product-grid" id="product-display">
+            </div>
     </div>
+
+    <div id="cart-button" onclick="alertCart()">🛒 السلة: <span id="cart-count">0</span></div>
 
     <script>
         let cart = [];
 
-        function addToCart(name, price) {
-            cart.push({name, price});
-            document.getElementById('cart-count').innerText = cart.length;
-            
-            // انيميشن بسيط للزر عند الاضافة
-            const btn = event.target;
-            btn.innerText = "تمت الإضافة! ✓";
-            btn.style.backgroundColor = "#4CAF50";
-            btn.style.color = "#fff";
-            
-            setTimeout(() => {
-                btn.innerText = "أضف للسلة";
-                btn.style.backgroundColor = "#ffcc00";
-                btn.style.color = "#000";
-            }, 1000);
-        }
+        // بيانات المنتجات - تأكد من أسماء الصور هنا
+        const data = {
+            'STEAL A BRAINROT': [
+                { name: 'Strawberry Elephant', price: 500, img: 'image_2026-03-14_000115590-removebg-preview.png' },
+                { name: 'Meowl', price: 400, img: 'image_2026-03-14_000156252-removebg-preview.png' },
+                { name: 'Skibidi Toilet', price: 300, img: 'image_2026-03-14_000221800-removebg-preview.png' },
+                { name: 'Dragon Cannelloni', price: 60, img: 'image_2026-03-14_000246005-removebg-preview.png' }
+            ]
+        };
 
-        function showCart() {
-            if (cart.length === 0) {
-                alert("سلتك فارغة حالياً!");
-                return;
-            }
-            let message = "مشترياتك الحالية:\n\n";
-            let total = 0;
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} - $${item.price}\n`;
-                total += item.price;
-            });
-            message += `\nالمجموع الكلي: $${total}\n\nهل تود إتمام الشراء؟`;
+        function showCategory(cat) {
+            if(!data[cat]) return alert("هذا القسم قيد التجهيز!");
             
-            if (confirm(message)) {
-                alert("سيتم توجيهك لصفحة الدفع قريباً!");
-            }
-        }
-    </script>
-</body>
-</html>
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('products-section').style.display = 'block';
+            document.getElementById('current-category').innerText = cat;
+            
+            const display = document.getElementById('product-display');
+            display.innerHTML = '';
+            
+            data[cat].forEach(item => {
+                display.innerHTML += `
+                    <div class="card">
+                        <div class="img-container">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.src='
