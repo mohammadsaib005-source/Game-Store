@@ -2,20 +2,97 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>متجر الألعاب | الرئيسية</title>
+    <title>متجر الأساطير | الرئيسية</title>
     <style>
-        body { background: #0b0b0b; color: white; font-family: sans-serif; text-align: center; margin: 0; }
-        .header { padding: 50px; border-bottom: 3px solid #ffcc00; background: url('Project Community.png') center/contain no-repeat; height: 150px; }
-        .categories { display: flex; justify-content: center; gap: 20px; padding: 50px; }
-        .cat-card { border: 2px solid #ffcc00; padding: 40px; border-radius: 20px; cursor: pointer; transition: 0.3s; text-decoration: none; color: white; width: 200px; }
-        .cat-card:hover { transform: scale(1.1); box-shadow: 0 0 20px #ffcc00; }
+        /* خلفية متحركة فخمة */
+        body {
+            margin: 0;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .header-img {
+            max-width: 400px;
+            filter: drop-shadow(0 0 20px #ffcc00);
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .categories { display: flex; gap: 30px; }
+
+        .cat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #ffcc00;
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: 0.4s;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .cat-card:hover {
+            transform: translateY(-15px);
+            background: #ffcc00;
+            color: black;
+            box-shadow: 0 0 40px #ffcc00;
+        }
+
+        /* تصميم رسالة التحذير المخصصة */
+        .custom-alert {
+            display: none;
+            position: fixed;
+            top: 20%;
+            background: #1a1a1a;
+            border: 2px solid #ffcc00;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 50px #000;
+            z-index: 100;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="header"><h1>مرحباً بكم في المتجر</h1></div>
+
+    <img src="Project Community.png" class="header-img" alt="Logo">
+    <h1 class="welcome-text">مرحباً بك في متجرنا الخاص</h1>
+
     <div class="categories">
-        <a href="brainrot.html" class="cat-card"><h2>STEAL A BRAINROT</h2></a>
-        <a href="#" class="cat-card" onclick="alert('قريباً!')"><h2>BLOX FRUIT</h2></a>
+        <a href="brainrot.html" class="cat-card">
+            <h2>STEAL A BRAINROT</h2>
+            <p>تسوّق الآن</p>
+        </a>
+
+        <div class="cat-card" onclick="showNotice()">
+            <h2>BLOX FRUIT</h2>
+            <p>قريباً جداً</p>
+        </div>
     </div>
+
+    <div id="alertBox" class="custom-alert">
+        <h2 style="color: #ffcc00;">⚠️ تنبيه</h2>
+        <p>سوف نوفر هذا الماب قريباً جداً! كن مستعداً.</p>
+        <button onclick="hideNotice()" style="background: #ffcc00; border:none; padding:10px 20px; cursor:pointer; font-weight:bold; border-radius:5px;">موافق</button>
+    </div>
+
+    <script>
+        function showNotice() { document.getElementById('alertBox').style.display = 'block'; }
+        function hideNotice() { document.getElementById('alertBox').style.display = 'none'; }
+    </script>
 </body>
 </html>
