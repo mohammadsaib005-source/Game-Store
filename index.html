@@ -13,62 +13,63 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* --- الهيدر --- */
+        /* الهيدر باستخدام صورتك */
         .header {
             width: 100%;
-            padding: 60px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('Project Community.png');
-            background-size: cover;
+            height: 250px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Project Community.png');
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
             border-bottom: 3px solid var(--main-yellow);
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--main-yellow);
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
-            margin: 0;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
         }
 
-        /* --- حاوية الأقسام الرئيسية --- */
+        /* القائمة الرئيسية */
         .category-container {
             display: flex;
             gap: 30px;
             justify-content: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
             flex-wrap: wrap;
         }
 
         .category-btn {
             background: var(--card-bg);
             border: 2px solid var(--main-yellow);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 50px;
+            border-radius: 25px;
             cursor: pointer;
-            width: 280px;
+            width: 250px;
             text-align: center;
-            transition: 0.4s;
+            transition: 0.4s ease;
         }
 
         .category-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--main-yellow);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 25px var(--main-yellow);
         }
 
-        /* --- قسم المنتجات (مخفي افتراضياً) --- */
+        /* قسم المنتجات */
         #products-section {
-            display: none; 
+            display: none; /* مخفي في البداية */
             width: 90%;
             max-width: 1200px;
             padding: 40px 0;
@@ -76,7 +77,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
         }
 
@@ -93,12 +94,10 @@
 
         .img-container {
             width: 100%;
-            height: 180px;
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255,255,255,0.02);
-            border-radius: 15px;
             margin-bottom: 15px;
         }
 
@@ -108,41 +107,44 @@
             object-fit: contain;
         }
 
-        .price { font-size: 1.8rem; color: var(--main-yellow); font-weight: bold; }
+        .price { font-size: 2rem; color: var(--main-yellow); font-weight: bold; margin: 10px 0; }
 
         .add-btn {
             background-color: var(--main-yellow);
             color: #000;
             border: none;
-            padding: 12px;
+            padding: 15px;
             width: 100%;
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
+            font-size: 1.1rem;
         }
 
         .back-btn {
-            background: #333;
+            background: #222;
             color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            border: 1px solid #444;
+            padding: 10px 25px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            transition: 0.3s;
         }
+        .back-btn:hover { background: #333; }
 
-        /* --- السلة --- */
-        #cart-button {
+        /* سلة المشتريات */
+        #cart-status {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
+            bottom: 25px;
+            left: 25px;
             background: var(--main-yellow);
             color: #000;
             padding: 15px 25px;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -157,44 +159,77 @@
             <h2>STEAL A BRAINROT</h2>
         </div>
         <div class="category-btn" onclick="showCategory('BLOX FRUIT')">
-            <h2>BLOX FRUIT (قريباً)</h2>
+            <h2>BLOX FRUIT</h2>
+            <p style="font-size: 0.8rem; color: #888;">(قريباً)</p>
         </div>
     </div>
 
     <div id="products-section">
-        <button class="back-btn" onclick="goBack()">← العودة للأقسام</button>
-        <h2 id="current-category" style="color: var(--main-yellow); text-align: center; margin-bottom: 30px;"></h2>
-        <div class="product-grid" id="product-display">
-            </div>
+        <button class="back-btn" onclick="goHome()">← العودة للرئيسية</button>
+        <h2 id="cat-name" style="color: var(--main-yellow); text-align: center; margin-bottom: 40px; font-size: 2rem;"></h2>
+        <div class="product-grid" id="product-list"></div>
     </div>
 
-    <div id="cart-button" onclick="alertCart()">🛒 السلة: <span id="cart-count">0</span></div>
+    <div id="cart-status" onclick="viewCart()">🛒 السلة: <span id="cart-count">0</span></div>
 
     <script>
         let cart = [];
 
-        // بيانات المنتجات - تأكد من أسماء الصور هنا
-        const data = {
+        // تأكد أن الامتداد png أو jpg حسب ما رفعت
+        const inventory = {
             'STEAL A BRAINROT': [
-                { name: 'Strawberry Elephant', price: 500, img: 'image_2026-03-14_000115590-removebg-preview.png' },
-                { name: 'Meowl', price: 400, img: 'image_2026-03-14_000156252-removebg-preview.png' },
-                { name: 'Skibidi Toilet', price: 300, img: 'image_2026-03-14_000221800-removebg-preview.png' },
-                { name: 'Dragon Cannelloni', price: 60, img: 'image_2026-03-14_000246005-removebg-preview.png' }
+                { name: 'Strawberry Elephant', price: 500, img: 'SE.png' },
+                { name: 'Meowl', price: 400, img: 'ME.png' },
+                { name: 'Skibidi Toilet', price: 300, img: 'SK.png' },
+                { name: 'Dragon Cannelloni', price: 60, img: 'DR.png' }
             ]
         };
 
         function showCategory(cat) {
-            if(!data[cat]) return alert("هذا القسم قيد التجهيز!");
-            
+            if (!inventory[cat]) {
+                alert("هذا القسم سيتم افتتاحه قريباً!");
+                return;
+            }
+
             document.getElementById('main-menu').style.display = 'none';
             document.getElementById('products-section').style.display = 'block';
-            document.getElementById('current-category').innerText = cat;
-            
-            const display = document.getElementById('product-display');
-            display.innerHTML = '';
-            
-            data[cat].forEach(item => {
-                display.innerHTML += `
+            document.getElementById('cat-name').innerText = cat;
+
+            const list = document.getElementById('product-list');
+            list.innerHTML = '';
+
+            inventory[cat].forEach(item => {
+                list.innerHTML += `
                     <div class="card">
                         <div class="img-container">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.src='
+                            <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/200?text=Image+Not+Found'">
+                        </div>
+                        <h2>${item.name}</h2>
+                        <p class="price">$${item.price}</p>
+                        <button class="add-btn" onclick="addToCart('${item.name}', ${item.price})">أضف للسلة</button>
+                    </div>
+                `;
+            });
+            window.scrollTo(0, 0); // للعودة لأعلى الصفحة
+        }
+
+        function goHome() {
+            document.getElementById('main-menu').style.display = 'flex';
+            document.getElementById('products-section').style.display = 'none';
+        }
+
+        function addToCart(name, price) {
+            cart.push({name, price});
+            document.getElementById('cart-count').innerText = cart.length;
+            alert("تم إضافة " + name + " لسلتك!");
+        }
+
+        function viewCart() {
+            if (cart.length === 0) return alert("سلتك فارغة!");
+            let total = cart.reduce((s, i) => s + i.price, 0);
+            let summary = "طلباتك الحالية:\n" + cart.map(i => "- " + i.name + " ($" + i.price + ")").join("\n");
+            alert(summary + "\n\nالمجموع: $" + total);
+        }
+    </script>
+</body>
+</html>
