@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر الألعاب الاحترافي</title>
+    <title>متجر البرينروت الاحترافي</title>
     <style>
         :root {
-            --bg-color: #0b0b0b;   /* خلفية سوداء فخمة */
-            --card-bg: #1a1a1a;    /* خلفية الكروت (أغمق) */
-            --main-yellow: #ffcc00; /* أصفر الموقع الأساسي */
+            --bg-color: #0b0b0b;
+            --card-bg: #161616;
+            --main-yellow: #ffcc00;
             --text-color: #ffffff;
-            --sub-text: #b0b0b0;
         }
 
         body {
@@ -24,135 +23,132 @@
             align-items: center;
         }
 
-        /* --- تصميم الترويسة (Header) --- */
+        /* --- الهيدر الفخم --- */
         .header {
             width: 100%;
-            height: 300px;
-            background-color: transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url(' Project Community.png'); /* ترويسة الموقع مع خلفية غامقة */
-            background-size: cover;
+            padding: 60px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('Project Community.png');
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
-            border-bottom: 2px solid var(--main-yellow);
+            border-bottom: 3px solid var(--main-yellow);
+            text-align: center;
         }
 
         .header h1 {
+            font-size: 3rem;
             color: var(--main-yellow);
-            text-transform: uppercase;
-            font-size: 2.5rem;
-            text-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+            margin: 0;
         }
 
-        /* --- زر العودة (معدل) --- */
-        .back-btn {
-            background-color: #2a2a2a;
-            color: var(--text-color);
-            border: 1px solid #444;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        .back-btn:hover { background-color: #444; }
-
-        /* --- حاوية المنتجات --- */
+        /* --- الحاوية والشبكة --- */
         .container {
-            width: 100%;
             max-width: 1200px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
             padding: 50px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 90%;
         }
 
-        /* --- تصميم الكرت الأساسي --- */
+        /* --- تصميم الكروت --- */
         .card {
             background-color: var(--card-bg);
             border-radius: 20px;
-            width: 250px;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            border: 1px solid transparent;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--main-yellow);
-            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
         }
 
-        /* تصميم قسم الصورة (الجديد) */
-        .image-placeholder {
+        .img-container {
             width: 100%;
-            height: 150px;
-            background-color: #2a2a2a; /* لون مؤقت أغمق قليلاً من الكرت */
-            border-radius: 10px;
-            margin-bottom: 15px;
+            height: 180px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #555; /* لون نص مؤقت */
-            font-size: 0.9rem;
-            overflow: hidden; /* لقص أي شيء يخرج عن الإطار */
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
         }
-        .image-placeholder img {
+
+        .img-container img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* لضمان ظهور الصورة بالكامل دون تشويه */
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
         .card h2 {
-            font-size: 1.2rem;
-            color: var(--text-color);
             margin: 10px 0;
+            font-size: 1.4rem;
         }
 
         .price {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 2rem;
             color: var(--main-yellow);
-            margin-bottom: 20px;
+            font-weight: bold;
+            margin: 15px 0;
         }
 
-        /* --- تصميم زر الإضافة للسلة --- */
+        /* --- أزرار الشراء --- */
         .add-btn {
             background-color: var(--main-yellow);
             color: #000;
             border: none;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
+            padding: 12px;
             width: 100%;
-            transition: all 0.3s;
-        }
-        .add-btn:hover { background-color: #ffffff; transform: scale(1.05); }
-
-        /* --- نظام سلة المشتريات (الجديد) --- */
-        .cart-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px; /* في الجهة اليسرى كما في الصورة */
-            background-color: var(--main-yellow);
-            color: #000;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 30px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+            transition: 0.3s;
+            font-size: 1.1rem;
         }
-        .cart-toggle:hover { transform: scale(1.1); }
 
+        .add-btn:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* --- سلة المشتريات العائمة --- */
+        #cart-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--main-yellow);
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        #cart-button:hover { transform: scale(1.1); }
+
+        .back-btn {
+            margin-top: 20px;
+            background: none;
+            border: 1px solid #555;
+            color: #ccc;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -164,17 +160,26 @@
 
     <div class="container">
         <div class="card">
-            <div class="image-placeholder">
-                <img src="Dragon Cannelloni.jpg" alt="Dragon Cannelloni">
+            <div class="img-container">
+                <img src="image_2026-03-14_000115590-removebg-preview.png" alt="Strawberry Elephant">
             </div>
-            <h2>Dragon Cannelloni</h2>
-            <p class="price">$60</p>
-            <button class="add-btn" onclick="addToCart('Dragon Cannelloni', 60)">أضف للسلة</button>
+            <h2>Strawberry Elephant</h2>
+            <p class="price">$500</p>
+            <button class="add-btn" onclick="addToCart('Strawberry Elephant', 500)">أضف للسلة</button>
         </div>
 
         <div class="card">
-            <div class="image-placeholder">
-                <img src="https://via.placeholder.com/200x150?text=Skibidi+Toilet" alt="Skibidi Toilet">
+            <div class="img-container">
+                <img src="image_2026-03-14_000156252-removebg-preview.png" alt="Meowl">
+            </div>
+            <h2>Meowl</h2>
+            <p class="price">$400</p>
+            <button class="add-btn" onclick="addToCart('Meowl', 400)">أضف للسلة</button>
+        </div>
+
+        <div class="card">
+            <div class="img-container">
+                <img src="image_2026-03-14_000221800-removebg-preview.png" alt="Skibidi Toilet">
             </div>
             <h2>Skibidi Toilet</h2>
             <p class="price">$300</p>
@@ -182,57 +187,56 @@
         </div>
 
         <div class="card">
-            <div class="icon-circle">🐱</div> <h2>Meowl</h2>
-            <p class="price">$400</p>
-            <button class="add-btn" onclick="addToCart('Meowl', 400)">أضف للسلة</button>
-        </div>
-
-        <div class="card">
-            <div class="image-placeholder">
-                <img src="https://via.placeholder.com/200x150?text=Strawberry+Elephant" alt="Strawberry Elephant">
+            <div class="img-container">
+                <img src="image_2026-03-14_000246005-removebg-preview.png" alt="Dragon Cannelloni">
             </div>
-            <h2>Strawberry Elephant</h2>
-            <p class="price">$500</p>
-            <button class="add-btn" onclick="addToCart('Strawberry Elephant', 500)">أضف للسلة</button>
+            <h2>Dragon Cannelloni</h2>
+            <p class="price">$60</p>
+            <button class="add-btn" onclick="addToCart('Dragon Cannelloni', 60)">أضف للسلة</button>
         </div>
     </div>
 
-    <button class="cart-toggle" onclick="toggleCart()">🛒 السلة: <span id="cart-count">0</span> غرض</button>
+    <div id="cart-button" onclick="showCart()">
+        🛒 السلة: <span id="cart-count">0</span> غرض
+    </div>
 
     <script>
-        // مصفوفة لتخزين عناصر السلة
-        let cartItems = [];
+        let cart = [];
 
-        // دالة لإضافة عنصر للسلة
-        function addToCart(itemName, itemPrice) {
-            cartItems.push({ name: itemName, price: itemPrice });
-            updateCartCount();
-            alert("تم إضافة " + itemName + " للسلة بنجاح!");
+        function addToCart(name, price) {
+            cart.push({name, price});
+            document.getElementById('cart-count').innerText = cart.length;
+            
+            // انيميشن بسيط للزر عند الاضافة
+            const btn = event.target;
+            btn.innerText = "تمت الإضافة! ✓";
+            btn.style.backgroundColor = "#4CAF50";
+            btn.style.color = "#fff";
+            
+            setTimeout(() => {
+                btn.innerText = "أضف للسلة";
+                btn.style.backgroundColor = "#ffcc00";
+                btn.style.color = "#000";
+            }, 1000);
         }
 
-        // دالة لتحديث عدد العناصر في زر السلة
-        function updateCartCount() {
-            document.getElementById('cart-count').innerText = cartItems.length;
-        }
-
-        // دالة لعرض محتويات السلة (مؤقتة، يمكن تطويرها لصفحة سلة كاملة)
-        function toggleCart() {
-            if (cartItems.length === 0) {
-                alert("السلة فارغة!");
+        function showCart() {
+            if (cart.length === 0) {
+                alert("سلتك فارغة حالياً!");
                 return;
             }
-
-            let cartContent = "محتويات السلة:\n";
-            let totalPrice = 0;
-            cartItems.forEach(item => {
-                cartContent += "- " + item.name + ": $" + item.price + "\n";
-                totalPrice += item.price;
+            let message = "مشترياتك الحالية:\n\n";
+            let total = 0;
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - $${item.price}\n`;
+                total += item.price;
             });
-            cartContent += "\nالمجموع الكلي: $" + totalPrice;
-
-            alert(cartContent);
+            message += `\nالمجموع الكلي: $${total}\n\nهل تود إتمام الشراء؟`;
+            
+            if (confirm(message)) {
+                alert("سيتم توجيهك لصفحة الدفع قريباً!");
+            }
         }
     </script>
-
 </body>
 </html>
