@@ -2,79 +2,120 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>متجرنا يقدم لكم | Brainrot Items</title>
+    <title>متجرنا يقدم لكم | الرئيسية</title>
     <style>
-        body { background: #050505; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
-        
-        /* الهيدر */
-        .header {
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.9);
-            border-bottom: 2px solid #ffcc00;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .cart-icon-btn {
-            background: #ffcc00; color: #000; padding: 10px 20px;
-            border-radius: 12px; font-weight: bold; cursor: pointer; border: none;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); transition: 0.3s;
-        }
-        .cart-icon-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px #ffcc00; }
-
-        /* شبكة المنتجات */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 40px;
-            padding: 60px 10%;
-        }
-
-        /* الكرت الذكي والملمع */
-        .card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 25px;
-            padding: 25px;
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        /* تأثير التكبير واللمعة عند مرور الماوس */
-        .card:hover {
-            transform: scale(1.08); /* يكبر الكرت */
+        .hero-section h1 { font-size: 2.5rem; color: #ffcc00; margin-bottom: 40px; }
+
+        .cat-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* تصميم كرت الماب مع الصورة */
+        .cat-card {
+            background: #111;
+            border: 2px solid #333;
+            border-radius: 25px;
+            width: 280px;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.4s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .cat-card:hover {
             border-color: #ffcc00;
-            box-shadow: 0 0 40px rgba(255, 204, 0, 0.25); /* توهج ذهبي */
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
         }
 
-        /* حركة للصورة داخل الكرت */
-        .img-box {
-            height: 180px;
-            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-            border-radius: 20px;
+        .map-img {
+            width: 100%;
+            height: 160px;
+            background: #000;
+            border-radius: 15px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
-        }
-        
-        .card:hover .img-box img {
-            transform: scale(1.15) rotate(5deg); /* الصورة تكبر وتدور قليلاً */
-            filter: drop-shadow(0 0 15px #ffcc00); /* لمعة خلف الصورة */
+            overflow: hidden;
         }
 
-        .img-box img { 
-            max-width: 85%; max-height: 85%; 
-            object-fit: contain; 
-            transition: 0.4s ease; 
+        .map-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* عشان الصورة تعبي المربع */
         }
 
-        .price { color: #ffcc00; font-size: 2rem; font-weight: bold; margin
+        /* رسالة التنبيه المخصصة لبلوكس فروت */
+        .alert-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+        .alert-box {
+            background: #111; border: 2px solid #ffcc00;
+            padding: 40px; border-radius: 20px; text-align: center;
+        }
+        .alert-box button {
+            background: #ffcc00; border: none; padding: 10px 30px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <h1>مرحباً بك في متجرنا الخاص</h1>
+    </div>
+
+    <div class="cat-container">
+        <a href="brainrot.html" class="cat-card">
+            <div class="map-img">
+                <img src="SAB" alt="Steal A Brainrot" onerror="this.src='https://via.placeholder.com/280x160?text=SAB+Image'">
+            </div>
+            <h2>STEAL A BRAINROT</h2>
+            <p style="color: #888;">تسوّق الأغراض الآن</p>
+        </a>
+
+        <div class="cat-card" onclick="showAlert()">
+            <div class="map-img">
+                <img src="BF" alt="Blox Fruits" onerror="this.src='https://via.placeholder.com/280x160?text=BF+Image'">
+            </div>
+            <h2>BLOX FRUITS</h2>
+            <p style="color: #ffcc00;">قريباً جداً</p>
+        </div>
+    </div>
+
+    <div id="overlay" class="alert-overlay">
+        <div class="alert-box">
+            <h2 style="color: #ffcc00;">⚠️ قريباً</h2>
+            <p>سوف نوفر هذا الماب قريباً جداً!</p>
+            <button onclick="hideAlert()">فهمت</button>
+        </div>
+    </div>
+
+    <script>
+        function showAlert() { document.getElementById('overlay').style.display = 'flex'; }
+        function hideAlert() { document.getElementById('overlay').style.display = 'none'; }
+    </script>
+</body>
+</html>
