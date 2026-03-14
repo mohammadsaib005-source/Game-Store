@@ -10,7 +10,7 @@
             font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* شريط التنقل العلوي الموحد */
+        /* شريط التنقل العلوي */
         .top-navbar {
             width: 100%; padding: 15px 5%; background: rgba(0, 0, 0, 0.9);
             border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center;
@@ -33,7 +33,7 @@
         }
         .search-input:focus { border-color: #ffcc00; }
 
-        /* شبكة المنتجات الثابتة (3 في كل صف) */
+        /* شبكة المنتجات (3 في كل صف) */
         .products-grid {
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -50,28 +50,22 @@
         }
         .product-card:hover { border-color: #ffcc00; transform: translateY(-5px); }
         
-        /* تأثير المنتجات غير المتوفرة */
         .sold-out { opacity: 0.6; filter: grayscale(0.6); }
 
         .img-box { height: 180px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
-        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .img-box img { max-width: 95%; max-height: 95%; object-fit: contain; }
 
         .product-price { font-size: 1.8rem; color: #fff; margin: 15px 0; font-weight: bold; }
         
-        .badge { background: #331111; color: #ff4444; font-size: 0.8rem; padding: 5px 12px; border-radius: 10px; display: inline-block; margin-bottom: 10px; font-weight: bold; }
+        .badge { background: #e74c3c; color: white; font-size: 0.8rem; padding: 5px 12px; border-radius: 10px; display: inline-block; margin-bottom: 10px; font-weight: bold; }
 
-        .btn-buy {
+        .btn-buy-disabled {
             background: #222; color: #555; border: none; padding: 12px;
             border-radius: 12px; font-weight: bold; cursor: not-allowed; width: 100%;
         }
 
-        /* Responsive للأجهزة الصغيرة */
-        @media (max-width: 900px) {
-            .products-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            .products-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -99,83 +93,86 @@
         
         <div class="product-card sold-out" data-name="strawberry elephant">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034804054-removebg-preview.png" alt="Elephant"></div>
+            <div class="img-box"><img src="SE" alt="Elephant"></div>
             <h3>Strawberry Elephant</h3>
             <div class="product-price" data-base-price="500">$500</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="meowl">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034642938-removebg-preview.png" alt="Meowl"></div>
+            <div class="img-box"><img src="ME" alt="Meowl"></div>
             <h3>Meowl</h3>
             <div class="product-price" data-base-price="400">$400</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="headless horseman">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034502958-removebg-preview.png" alt="Headless"></div>
+            <div class="img-box"><img src="HH" alt="Headless Horseman"></div>
             <h3>Headless Horseman</h3>
             <div class="product-price" data-base-price="350">$350</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="skibidi toilet">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034502958-removebg-preview.png" alt="Skibidi"></div>
+            <div class="img-box"><img src="SK" alt="Skibidi"></div>
             <h3>Skibidi Toilet</h3>
             <div class="product-price" data-base-price="300">$300</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="griffin">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034417840-removebg-preview.png" alt="Griffin"></div>
+            <div class="img-box"><img src="GF" alt="Griffin"></div>
             <h3>Griffin</h3>
             <div class="product-price" data-base-price="150">$150</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="dragon gingerini">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034804054-removebg-preview.png" alt="Dragon"></div>
+            <div class="img-box"><img src="DG" alt="Dragon Gingerini"></div>
             <h3>Dragon Gingerini</h3>
             <div class="product-price" data-base-price="90">$90</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="dragon cannelloni">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034804054-removebg-preview.png" alt="Dragon"></div>
+            <div class="img-box"><img src="DR" alt="Dragon Cannelloni"></div>
             <h3>Dragon Cannelloni</h3>
             <div class="product-price" data-base-price="60">$60</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
         <div class="product-card sold-out" data-name="la supreme combination">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034642938-removebg-preview.png" alt="Supreme"></div>
+            <div class="img-box"><img src="LS" alt="La Supreme Combination"></div>
             <h3>La Supreme Combination</h3>
             <div class="product-price" data-base-price="55">$55</div>
-            <button class="btn-buy" disabled>نفذت الكمية</button>
+            <button class="btn-buy-disabled" disabled>نفذت الكمية</button>
         </div>
 
     </div>
 
     <script>
+        // دالة تحويل العملة الذكية
         function updatePrices() {
             const currency = document.getElementById('currencyChange').value;
             const prices = document.querySelectorAll('.product-price');
-            const rate = 3.75; 
+            const rate = 3.75; // سعر صرف الدولار مقابل الريال السعودي
 
             prices.forEach(priceTag => {
+                // نسحب السعر الأساسي بالدولار المخزن في خاصية data-base-price
                 const basePrice = parseFloat(priceTag.getAttribute('data-base-price'));
+                
                 if (currency === 'SAR') {
-                    const converted = (basePrice * rate).toFixed(2);
+                    const converted = (basePrice * rate).toLocaleString(); // تحويل وتنسيق الرقم
                     priceTag.innerText = converted + ' ر.س';
                 } else {
-                    priceTag.innerText = '$' + basePrice;
+                    priceTag.innerText = '$' + basePrice.toLocaleString();
                 }
             });
         }
