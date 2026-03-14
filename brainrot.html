@@ -2,208 +2,107 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A7X STORE | Steal a Brainrot</title>
     <style>
-        body {
-            margin: 0; padding: 0; background: #000; color: white;
-            font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center;
-        }
-
-        /* شريط التنقل العلوي الموحد */
-        .top-navbar {
-            width: 100%; padding: 15px 5%; background: rgba(5, 5, 5, 0.95);
-            border-bottom: 2px solid #ffcc00; display: flex; justify-content: space-between; align-items: center;
-            box-sizing: border-box; position: sticky; top: 0; z-index: 1000;
-        }
-
-        .currency-select {
-            background: #111; color: #ffcc00; border: 1px solid #ffcc00;
-            padding: 8px 15px; border-radius: 12px; cursor: pointer; outline: none; font-weight: bold;
-        }
-
-        .nav-link { 
-            color: #ffcc00; text-decoration: none; border: 1px solid #333; 
-            padding: 8px 20px; border-radius: 15px; transition: 0.3s; font-size: 0.9rem;
-        }
-        .nav-link:hover { border-color: #ffcc00; background: rgba(255, 204, 0, 0.1); }
-
-        /* عنوان الصفحة والبحث */
-        .page-header { margin: 40px 0; text-align: center; width: 100%; }
-        .page-title { color: #ffcc00; font-size: 2.5rem; font-weight: bold; margin-bottom: 20px; }
+        body { background: #000; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
+        .header { padding: 20px; border-bottom: 2px solid #ffcc00; display: flex; justify-content: space-between; align-items: center; background: #050505; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 40px 8%; }
         
-        .search-container { width: 90%; max-width: 600px; margin: 0 auto 40px auto; }
-        .search-input {
-            width: 100%; padding: 15px; background: #0a0a0a; border: 1px solid #222;
-            border-radius: 15px; color: white; text-align: right; outline: none; transition: 0.3s;
+        .card { 
+            background: #0a0a0a; border-radius: 20px; padding: 25px; border: 1px solid #222; 
+            transition: 0.3s; position: relative;
         }
-        .search-input:focus { border-color: #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); }
+        .sold-out-card { opacity: 0.6; filter: grayscale(0.5); }
 
-        /* شبكة المنتجات */
-        .products-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px; width: 90%; max-width: 1200px; padding-bottom: 60px;
-        }
-
-        .product-card {
-            background: #0a0a0a; border: 1px solid #222;
-            border-radius: 20px; padding: 25px; text-align: center; 
-            transition: 0.3s; position: relative; opacity: 0.8;
-        }
-        .product-card:hover { border-color: #ffcc00; transform: translateY(-5px); opacity: 1; }
-        
-        .badge { 
-            position: absolute; top: 15px; right: 15px; padding: 5px 12px; 
-            border-radius: 8px; font-size: 0.75rem; font-weight: bold; 
-            background: #e74c3c; color: white; z-index: 10;
-        }
+        .badge { position: absolute; top: 15px; right: 15px; padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; background: #e74c3c; color: white; }
 
         .img-box { height: 180px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
-        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(0.3); }
-        .product-card:hover img { filter: grayscale(0); }
+        .img-box img { max-width: 90%; max-height: 90%; }
 
-        .product-price { font-size: 1.8rem; color: #555; margin: 15px 0; font-weight: bold; }
+        .price { color: #555; font-size: 2rem; font-weight: bold; margin: 15px 0; }
         
-        .btn-disabled { 
-            background: #222 !important; color: #555 !important; border: none; 
-            padding: 12px; border-radius: 10px; font-weight: bold; 
-            cursor: not-allowed; width: 100%; margin-top: 10px; 
-        }
+        .btn-disabled { background: #222 !important; color: #555 !important; border: none; padding: 12px; border-radius: 10px; font-weight: bold; cursor: not-allowed; width: 100%; margin-top: 10px; }
 
-        /* قسم آراء العملاء */
-        .reviews-section { width: 100%; padding: 60px 5%; background: #050505; text-align: center; border-top: 1px solid #111; }
-        .reviews-container { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; justify-content: center; min-height: 80px; }
-        .no-reviews { color: #444; font-style: italic; }
+        .nav-link { color: #ffcc00; text-decoration: none; border: 1px solid #333; padding: 10px 20px; border-radius: 15px; transition: 0.3s; }
+        .nav-link:hover { border-color: #ffcc00; }
     </style>
 </head>
 <body>
 
-    <nav class="top-navbar">
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <select class="currency-select" id="currencyChange" onchange="updatePrices()">
-                <option value="USD">USD | $</option>
-                <option value="SAR">SAR | ر.س</option>
-            </select>
-            <a href="https://discord.gg/472RS8rT" target="_blank" class="nav-link">ديسكورد 👾</a>
-        </div>
-        <div style="color: #ffcc00; font-weight: bold; font-size: 1.2rem;">A7X STORE</div>
-        <a href="index.html" style="color: #ffcc00; text-decoration: none; font-size: 0.9rem;">← العودة للرئيسية</a>
-    </nav>
-
-    <div class="page-header">
-        <h1 class="page-title">STEAL A BRAINROT</h1>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن غرض محدد (مثلاً: Dragon, Griffin)..." onkeyup="filterProducts()">
+    <div class="header">
+        <a href="index.html" style="color:#ffcc00; text-decoration:none;">← العودة للرئيسية</a>
+        <h2 style="color:#ffcc00;">A7X - STEAL A BRAINROT</h2>
+        <div>
+            <a href="https://discord.gg/472RS8rT" target="_blank" class="nav-link" style="margin-left: 10px;">ديسكورد 👾</a>
         </div>
     </div>
 
-    <div class="products-grid" id="productsGrid">
+    <div class="grid">
         
-        <div class="product-card" data-name="strawberry elephant">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
             <div class="img-box"><img src="SE" alt="Elephant"></div>
             <h3>Strawberry Elephant</h3>
-            <div class="product-price" data-base-price="500">$500</div>
+            <div class="price">$500</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="meowl">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
             <div class="img-box"><img src="ME" alt="Meowl"></div>
             <h3>Meowl</h3>
-            <div class="product-price" data-base-price="400">$400</div>
+            <div class="price">$400</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="headless horseman">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034502958-removebg-preview.png" alt="Headless"></div>
+            <div class="img-box"><img src="HH" alt="Headless Horseman"></div>
             <h3>Headless Horseman</h3>
-            <div class="product-price" data-base-price="350">$350</div>
+            <div class="price">$350</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="skibidi toilet">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
             <div class="img-box"><img src="SK" alt="Skibidi"></div>
             <h3>Skibidi Toilet</h3>
-            <div class="product-price" data-base-price="300">$300</div>
+            <div class="price">$300</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="griffin">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034417840-removebg-preview.png" alt="Griffin"></div>
+            <div class="img-box"><img src="GF" alt="Griffin"></div>
             <h3>Griffin</h3>
-            <div class="product-price" data-base-price="150">$150</div>
+            <div class="price">$150</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="dragon gingerini">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034804054-removebg-preview.png" alt="Dragon"></div>
+            <div class="img-box"><img src="DG" alt="Dragon Gingerini"></div>
             <h3>Dragon Gingerini</h3>
-            <div class="product-price" data-base-price="90">$90</div>
+            <div class="price">$90</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="dragon cannelloni">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
             <div class="img-box"><img src="DR" alt="Dragon Cannelloni"></div>
             <h3>Dragon Cannelloni</h3>
-            <div class="product-price" data-base-price="60">$60</div>
+            <div class="price">$60</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
-        <div class="product-card" data-name="la supreme combination">
+        <div class="card sold-out-card">
             <span class="badge">غير متوفر ❌</span>
-            <div class="img-box"><img src="image_2026-03-14_034642938-removebg-preview.png" alt="Supreme"></div>
+            <div class="img-box"><img src="LS" alt="La Supreme Combination"></div>
             <h3>La Supreme Combination</h3>
-            <div class="product-price" data-base-price="55">$55</div>
+            <div class="price">$55</div>
             <button class="btn-disabled" disabled>نفذت الكمية</button>
         </div>
 
     </div>
-
-    <section class="reviews-section">
-        <h2 style="color: #ffcc00; font-size: 1.5rem;">آراء العملاء</h2>
-        <div class="reviews-container" id="reviewsContainer">
-            <p class="no-reviews">لا توجد تقييمات حالياً.</p>
-        </div>
-    </section>
-
-    <script>
-        // وظيفة تحويل العملات
-        function updatePrices() {
-            const currency = document.getElementById('currencyChange').value;
-            const prices = document.querySelectorAll('.product-price');
-            const rate = 3.75; 
-
-            prices.forEach(priceTag => {
-                const basePrice = parseFloat(priceTag.getAttribute('data-base-price'));
-                if (currency === 'SAR') {
-                    const converted = (basePrice * rate).toFixed(2);
-                    priceTag.innerText = converted + ' ر.س';
-                } else {
-                    priceTag.innerText = '$' + basePrice;
-                }
-            });
-        }
-
-        // وظيفة البحث عن الأغراض
-        function filterProducts() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.product-card');
-
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                if (name.includes(input)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
-    </script>
 </body>
 </html>
