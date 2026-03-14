@@ -62,7 +62,7 @@
             background: rgba(255, 255, 255, 0.03); border: 1px solid #222;
             border-radius: 30px; width: 320px; padding: 25px; text-align: center;
             text-decoration: none; color: white; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); cursor: pointer;
         }
         .map-card:hover { transform: translateY(-20px); border-color: #ffcc00; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
 
@@ -96,7 +96,8 @@
         <div style="display: flex; gap: 15px; align-items: center;">
             <select class="currency-select" id="currencyChange" onchange="updateCurrencyDisplay()">
                 <option value="USD">USD | $</option>
-                <option value="SAR">SA | $</option> </select>
+                <option value="SAR">SA | $</option> 
+            </select>
             <div class="cart-wrapper" onclick="showSimpleAlert('السلة', 'سلتك فارغة حالياً، ابدأ التسوق!')">
                 <span>🛒</span>
                 <span id="cartCount">0</span>
@@ -119,11 +120,12 @@
     </div>
 
     <div class="container">
-        <a href="bloxfruit.html" class="map-card">
+        <div class="map-card" onclick="showSimpleAlert('BLOX FRUIT', 'سيتم توفير هذا الماب قريباً جداً في المتجر!')">
             <div class="img-container"><img src="BF" alt="Blox Fruit"></div>
             <h3>BLOX FRUIT</h3>
             <span class="status soon">قريباً جداً</span>
-        </a>
+        </div>
+
         <a href="brainrot.html" class="map-card">
             <div class="img-container"><img src="SAB" alt="Steal a Brainrot"></div>
             <h3>STEAL A BRAINROT</h3>
@@ -153,7 +155,6 @@
             loader.style.display = 'block';
             document.getElementById('alertBtn').style.display = 'none';
 
-            // محاكاة تسجيل الدخول الطبيعي
             setTimeout(() => {
                 document.getElementById('loginBtn').innerText = "✅ تم تسجيل الدخول";
                 document.getElementById('loginBtn').style.background = "#ffcc00";
@@ -165,7 +166,7 @@
             if(type === 'discord') {
                 window.location.href = 'https://discord.gg/472RS8rT';
             } else {
-                showSimpleAlert("قريباً", "صفحة التيك توك قيد التجهيز!");
+                showSimpleAlert("TikTok", "صفحة التيك توك قيد التجهيز!");
             }
         }
 
