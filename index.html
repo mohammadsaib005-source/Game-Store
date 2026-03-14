@@ -12,24 +12,32 @@
             color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden;
         }
 
-        /* شريط التنقل العلوي المحدث */
+        /* شريط التنقل العلوي */
         .top-navbar {
             width: 100%; padding: 15px 5%; background: rgba(0, 0, 0, 0.9);
             border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
             position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
         }
 
-        /* زر جوجل الجديد */
-        .btn-google {
-            background: #fff; color: #000; border: none; padding: 8px 18px;
-            border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.85rem;
-            transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        /* زر تسجيل الدخول الجديد - نصي فقط */
+        .btn-login {
+            background: #ffcc00; color: #000; border: none; padding: 10px 22px;
+            border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem;
+            transition: 0.3s;
         }
-        .btn-google:hover { transform: scale(1.05); background: #f1f1f1; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+        .btn-login:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
+
+        /* زر السلة القابل للضغط */
+        .cart-wrapper {
+            background: #1a1a1a; color: #ffcc00; border: 1px solid #ffcc00;
+            padding: 7px 15px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px; font-weight: bold;
+        }
+        .cart-wrapper:hover { background: #ffcc00; color: #000; }
 
         .currency-select {
             background: #111; color: #ffcc00; border: 1px solid #ffcc00;
-            padding: 5px 10px; border-radius: 10px; cursor: pointer; outline: none;
+            padding: 5px 10px; border-radius: 10px; cursor: pointer; outline: none; font-weight: bold;
         }
 
         /* العناوين والروابط الاجتماعية */
@@ -42,7 +50,7 @@
         .social-links { margin-bottom: 60px; display: flex; gap: 20px; }
         .social-btn {
             background: none; color: #ffcc00; text-decoration: none; font-size: 0.9rem;
-            border: 1px solid rgba(255, 204, 0, 0.3); padding: 5px 15px;
+            border: 1px solid rgba(255, 204, 0, 0.3); padding: 8px 20px;
             border-radius: 20px; transition: 0.3s; cursor: pointer;
         }
         .social-btn:hover { background: #ffcc00; color: black; box-shadow: 0 0 15px #ffcc00; }
@@ -88,16 +96,17 @@
         <div style="display: flex; gap: 15px; align-items: center;">
             <select class="currency-select" id="currencyChange" onchange="updateCurrencyDisplay()">
                 <option value="USD">USD | $</option>
-                <option value="SAR">SAR | ر.س</option>
-            </select>
-            <div style="color: #ffcc00; font-weight: bold; cursor: pointer;">🛒 <span id="cartCount">0</span></div>
+                <option value="SAR">SA | $</option> </select>
+            <div class="cart-wrapper" onclick="showSimpleAlert('السلة', 'سلتك فارغة حالياً، ابدأ التسوق!')">
+                <span>🛒</span>
+                <span id="cartCount">0</span>
+            </div>
         </div>
+        
         <div style="font-size: 1.5rem; font-weight: bold; color: #ffcc00; letter-spacing: 2px;">A7X STORE</div>
+        
         <div>
-            <button class="btn-google" id="loginBtn" onclick="handleGoogleLogin()">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Secondary_Icon_Dark.svg" width="18" alt="G">
-                تسجيل الدخول عبر Google
-            </button>
+            <button class="btn-login" id="loginBtn" onclick="handleGoogleLogin()">تسجيل الدخول</button>
         </div>
     </nav>
 
@@ -140,11 +149,13 @@
             
             modal.style.display = 'flex';
             title.innerText = 'Google Login';
-            body.innerText = 'يتم توجيهك إلى صفحات Google الآمنة...';
+            body.innerText = 'يتم توجيهك إلى حساباتك في Google...';
             loader.style.display = 'block';
+            document.getElementById('alertBtn').style.display = 'none';
 
+            // محاكاة تسجيل الدخول الطبيعي
             setTimeout(() => {
-                document.getElementById('loginBtn').innerHTML = "✅ تم الدخول بحسابك";
+                document.getElementById('loginBtn').innerText = "✅ تم تسجيل الدخول";
                 document.getElementById('loginBtn').style.background = "#ffcc00";
                 closeAlert();
             }, 2000);
@@ -170,7 +181,8 @@
         
         function updateCurrencyDisplay() {
             const currency = document.getElementById('currencyChange').value;
-            showSimpleAlert("تحديث العملة", "تم تغيير العملة إلى " + (currency === 'SAR' ? 'الريال السعودي' : 'الدولار الأمريكي'));
+            const text = (currency === 'SAR' ? 'الريال السعودي (SA)' : 'الدولار الأمريكي (USD)');
+            showSimpleAlert("تحديث العملة", "تم تغيير العملة إلى " + text);
         }
     </script>
 </body>
