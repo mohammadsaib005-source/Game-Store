@@ -12,19 +12,20 @@
             color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden;
         }
 
-        /* شريط التنقل العلوي */
+        /* شريط التنقل العلوي المحدث */
         .top-navbar {
             width: 100%; padding: 15px 5%; background: rgba(0, 0, 0, 0.9);
             border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
             position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
         }
 
-        .btn-yellow {
-            background: #ffcc00; color: black; border: none; padding: 8px 20px;
-            border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem;
-            transition: 0.3s;
+        /* زر جوجل الجديد */
+        .btn-google {
+            background: #fff; color: #000; border: none; padding: 8px 18px;
+            border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.85rem;
+            transition: 0.3s; display: flex; align-items: center; gap: 8px;
         }
-        .btn-yellow:hover { transform: scale(1.05); box-shadow: 0 0 15px #ffcc00; }
+        .btn-google:hover { transform: scale(1.05); background: #f1f1f1; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
 
         .currency-select {
             background: #111; color: #ffcc00; border: 1px solid #ffcc00;
@@ -34,11 +35,11 @@
         /* العناوين والروابط الاجتماعية */
         .store-title {
             font-size: 4.5rem; font-weight: 900; color: #ffcc00;
-            text-shadow: 0 0 30px rgba(255, 204, 0, 0.5); margin: 40px 0 10px 0; letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.5); margin: 60px 0 10px 0; letter-spacing: 4px;
         }
         .store-subtitle { font-size: 1.1rem; color: #888; margin-bottom: 20px; }
 
-        .social-links { margin-bottom: 40px; display: flex; gap: 20px; }
+        .social-links { margin-bottom: 60px; display: flex; gap: 20px; }
         .social-btn {
             background: none; color: #ffcc00; text-decoration: none; font-size: 0.9rem;
             border: 1px solid rgba(255, 204, 0, 0.3); padding: 5px 15px;
@@ -46,12 +47,7 @@
         }
         .social-btn:hover { background: #ffcc00; color: black; box-shadow: 0 0 15px #ffcc00; }
 
-        /* البحث والمحتوى */
-        .search-container { width: 90%; max-width: 1200px; margin-bottom: 30px; }
-        .search-bar { width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 15px; color: white; text-align: right; outline: none; transition: 0.3s; }
-        .search-bar:focus { border-color: #ffcc00; background: rgba(255,255,255,0.1); }
-
-        .container { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; padding: 20px; width: 100%; }
+        .container { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; padding: 20px; width: 100%; margin-bottom: 100px; }
 
         /* بطاقات المابات */
         .map-card {
@@ -70,26 +66,6 @@
         .online { background: #ffcc00; color: black; }
         .soon { background: #1a1a1a; color: #555; border: 1px solid #333; }
 
-        /* قسم آراء العملاء المطور */
-        .reviews-title { color: #ffcc00; margin: 80px 0 30px 0; font-size: 2.5rem; font-weight: bold; }
-        .reviews-wrapper {
-            display: flex; gap: 20px; width: 90%; max-width: 1200px; overflow-x: auto; padding-bottom: 20px; scroll-behavior: smooth;
-        }
-        .review-card {
-            background: #200a3d; /* البنفسجي المطلوب */
-            min-width: 350px; padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px;
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
-        }
-        .user-icon { background: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #111; font-size: 1.5rem; flex-shrink: 0; }
-        .stars-gold { color: #ffcc00; font-size: 0.8rem; }
-
-        /* نموذج التقييم */
-        .rating-form { 
-            background: rgba(255,255,255,0.02); border: 1px solid #222; 
-            padding: 30px; border-radius: 25px; width: 90%; max-width: 600px; 
-            margin: 40px 0 80px 0; box-sizing: border-box;
-        }
-
         /* نظام التنبيهات */
         #customAlert {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -104,7 +80,6 @@
             width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -119,7 +94,10 @@
         </div>
         <div style="font-size: 1.5rem; font-weight: bold; color: #ffcc00; letter-spacing: 2px;">A7X STORE</div>
         <div>
-            <button class="btn-yellow" id="loginBtn" onclick="handleLogin()">تسجيل الدخول</button>
+            <button class="btn-google" id="loginBtn" onclick="handleGoogleLogin()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Secondary_Icon_Dark.svg" width="18" alt="G">
+                تسجيل الدخول عبر Google
+            </button>
         </div>
     </nav>
 
@@ -129,10 +107,6 @@
     <div class="social-links">
         <button class="social-btn" onclick="handleLink('discord')">Discord 👾</button>
         <button class="social-btn" onclick="handleLink('tiktok')">TikTok 📱</button>
-    </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="ابحث عن ماب أو غرض...">
     </div>
 
     <div class="container">
@@ -148,38 +122,6 @@
         </a>
     </div>
 
-    <div class="reviews-title">آراء العملاء ⭐️</div>
-    <div class="reviews-wrapper" id="reviewsList">
-        <div class="review-card">
-            <div class="user-icon">👤</div>
-            <div style="text-align: right; flex-grow: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <strong>بندر الشهري</strong>
-                    <div class="stars-gold">⭐⭐⭐⭐⭐</div>
-                </div>
-                <p style="margin: 5px 0 0 0; color: #bbb;">مره حلو وسريع بالتعامل</p>
-            </div>
-        </div>
-        <div class="review-card">
-            <div class="user-icon">👤</div>
-            <div style="text-align: right; flex-grow: 1;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <strong>Fahad Alotaibi</strong>
-                    <div class="stars-gold">⭐⭐⭐⭐⭐</div>
-                </div>
-                <p style="margin: 5px 0 0 0; color: #bbb;">أفضل متجر مابات بلا منازع</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="rating-form">
-        <h4 style="margin-top: 0; color: #ffcc00;">أضف تقييمك</h4>
-        <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px;">* التقييم متاح فقط للمشترين المسجلين.</p>
-        <input type="text" id="revName" placeholder="اسمك المستعار" class="search-bar" style="margin-bottom: 15px;">
-        <textarea id="revText" placeholder="اكتب تجربتك هنا..." class="search-bar" style="height: 100px; resize: none; margin-bottom: 15px;"></textarea>
-        <button class="btn-yellow" style="width: 100%; padding: 15px;" onclick="checkAndPost()">نشر التقييم</button>
-    </div>
-
     <div id="customAlert">
         <div class="alert-box">
             <h2 id="alertTitle" style="color: #ffcc00; margin: 0;"></h2>
@@ -190,69 +132,27 @@
     </div>
 
     <script>
-        let isLoggedIn = false;
-        let hasPurchased = false; // ستتغير إلى true عند الشراء
-
-        function handleLogin() {
+        function handleGoogleLogin() {
             const modal = document.getElementById('customAlert');
             const title = document.getElementById('alertTitle');
             const body = document.getElementById('alertBody');
             const loader = document.getElementById('alertLoader');
             
             modal.style.display = 'flex';
-            title.innerText = 'جارٍ تسجيل الدخول';
-            body.innerText = 'يتم التحقق من بياناتك...';
+            title.innerText = 'Google Login';
+            body.innerText = 'يتم توجيهك إلى صفحات Google الآمنة...';
             loader.style.display = 'block';
 
             setTimeout(() => {
-                isLoggedIn = true;
-                hasPurchased = true; // محاكاة للشراء لغرض التجربة
-                document.getElementById('loginBtn').innerText = "تم الدخول ✅";
+                document.getElementById('loginBtn').innerHTML = "✅ تم الدخول بحسابك";
+                document.getElementById('loginBtn').style.background = "#ffcc00";
                 closeAlert();
-                alert("تم تسجيل الدخول! يمكنك الآن التقييم بما أنك اشتريت سابقاً.");
-            }, 1500);
-        }
-
-        function checkAndPost() {
-            if (!isLoggedIn) {
-                showSimpleAlert("تنبيه", "يجب عليك تسجيل الدخول أولاً للتقييم!");
-                return;
-            }
-            if (!hasPurchased) {
-                showSimpleAlert("تنبيه", "عذراً، التقييم متاح فقط لمن قاموا بشراء منتج واحد على الأقل.");
-                return;
-            }
-            
-            const name = document.getElementById('revName').value;
-            const text = document.getElementById('revText').value;
-            
-            if (name && text) {
-                const list = document.getElementById('reviewsList');
-                const card = document.createElement('div');
-                card.className = 'review-card';
-                card.style.animation = "fadeIn 0.5s ease forwards";
-                card.innerHTML = `
-                    <div class="user-icon">👤</div>
-                    <div style="text-align: right; flex-grow: 1;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <strong>${name}</strong>
-                            <div class="stars-gold">⭐⭐⭐⭐⭐</div>
-                        </div>
-                        <p style="margin: 5px 0 0 0; color: #bbb;">${text}</p>
-                    </div>`;
-                list.prepend(card);
-                document.getElementById('revName').value = '';
-                document.getElementById('revText').value = '';
-                showSimpleAlert("تم!", "شكراً لتقييمك الصادق.");
-            } else {
-                showSimpleAlert("خطأ", "يرجى كتابة الاسم والتعليق.");
-            }
+            }, 2000);
         }
 
         function handleLink(type) {
             if(type === 'discord') {
-                showSimpleAlert("جارٍ التحويل", "سيتم نقلك إلى ديسكورد خلال لحظات...");
-                setTimeout(() => { window.location.href = 'https://discord.gg/472RS8rT'; }, 2000);
+                window.location.href = 'https://discord.gg/472RS8rT';
             } else {
                 showSimpleAlert("قريباً", "صفحة التيك توك قيد التجهيز!");
             }
